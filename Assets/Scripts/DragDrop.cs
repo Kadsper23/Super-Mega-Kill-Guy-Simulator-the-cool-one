@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class DragDrop : MonoBehaviour
 {
     private bool isDragging = false;
     public GameObject Canvas;
+    public float dragScale = 2.5f;
 
     // Start is called before the first frame update
     void Start()
@@ -15,11 +17,13 @@ public class DragDrop : MonoBehaviour
     public void StartDrag()
     {
         isDragging = true;
+        transform.localScale = transform.localScale * dragScale;
     }
 
     public void EndDrag()
     {
         isDragging = false;
+        transform.localScale /= dragScale;
     }
 
     // Update is called once per frame

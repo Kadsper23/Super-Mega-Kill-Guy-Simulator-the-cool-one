@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 528092518802574581}
   m_Layer: 0
   m_Name: Card1
-  m_TagString: Untagged
+  m_TagString: Card
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -89,6 +89,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b50a1374f5c2bf84a9dd1a878015c630, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Canvas: {fileID: 0}
+  dragScale: 2.5
 --- !u!114 &528092518802574581
 MonoBehaviour:
   m_ObjectHideFlags: 0
