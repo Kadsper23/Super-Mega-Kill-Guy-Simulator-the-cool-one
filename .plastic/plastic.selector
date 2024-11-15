@@ -1,0 +1,4 @@
+repository "Super Mega Kill Guy Simulator@Kadsper23@cloud"
+  path "/"
+    br "/main"
+    co "/main"
