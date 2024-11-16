@@ -6,13 +6,18 @@ namespace Mirror
 {
     public class DistanceInterestManagement : InterestManagement
     {
+<<<<<<< Updated upstream
         [Tooltip("The maximum range that objects will be visible at.")]
+=======
+        [Tooltip("The maximum range that objects will be visible at. Add DistanceInterestManagementCustomRange onto NetworkIdentities for custom ranges.")]
+>>>>>>> Stashed changes
         public int visRange = 10;
 
         [Tooltip("Rebuild all every 'rebuildInterval' seconds.")]
         public float rebuildInterval = 1;
         double lastRebuildTime;
 
+<<<<<<< Updated upstream
         public override bool OnCheckObserver(NetworkIdentity identity, NetworkConnection newObserver)
         {
             return Vector3.Distance(identity.transform.position, newObserver.identity.transform.position) <= visRange;
@@ -21,6 +26,30 @@ namespace Mirror
         public override void OnRebuildObservers(NetworkIdentity identity, HashSet<NetworkConnection> newObservers, bool initialize)
         {
             // 'transform.' calls GetComponent, only do it once
+=======
+        // helper function to get vis range for a given object, or default.
+        int GetVisRange(NetworkIdentity identity)
+        {
+            return identity.TryGetComponent(out DistanceInterestManagementCustomRange custom) ? custom.visRange : visRange;
+        }
+
+        [ServerCallback]
+        public override void Reset()
+        {
+            lastRebuildTime = 0D;
+        }
+
+        public override bool OnCheckObserver(NetworkIdentity identity, NetworkConnectionToClient newObserver)
+        {
+            int range = GetVisRange(identity);
+            return Vector3.Distance(identity.transform.position, newObserver.identity.transform.position) < range;
+        }
+
+        public override void OnRebuildObservers(NetworkIdentity identity, HashSet<NetworkConnectionToClient> newObservers)
+        {
+            // cache range and .transform because both call GetComponent.
+            int range = GetVisRange(identity);
+>>>>>>> Stashed changes
             Vector3 position = identity.transform.position;
 
             // brute force distance check

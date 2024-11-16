@@ -61,13 +61,25 @@ namespace Mirror
             }
 
             Change change = new Change
+<<<<<<< Updated upstream
+=======
             {
                 operation = op,
                 item = item
             };
 
+            if (IsRecording())
+>>>>>>> Stashed changes
+            {
+                operation = op,
+                item = item
+            };
+
+<<<<<<< Updated upstream
             changes.Add(change);
 
+=======
+>>>>>>> Stashed changes
             Callback?.Invoke(op, item);
         }
 
@@ -144,7 +156,11 @@ namespace Mirror
             // This list can now only be modified by synchronization
             IsReadOnly = true;
 
+<<<<<<< Updated upstream
             int changesCount = (int)reader.ReadUInt32();
+=======
+            int changesCount = (int)reader.ReadUInt();
+>>>>>>> Stashed changes
 
             for (int i = 0; i < changesCount; i++)
             {

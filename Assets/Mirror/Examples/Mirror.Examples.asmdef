@@ -2,7 +2,12 @@
     "name": "Mirror.Examples",
     "references": [
         "Mirror",
+<<<<<<< Updated upstream
         "Mirror.Components"
+=======
+        "Mirror.Components",
+        "Unity.TextMeshPro"
+>>>>>>> Stashed changes
     ],
     "optionalUnityReferences": [],
     "includePlatforms": [],

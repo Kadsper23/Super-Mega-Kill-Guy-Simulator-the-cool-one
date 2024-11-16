@@ -255,7 +255,11 @@ namespace Mirror.Examples.MultipleMatch
             StartCoroutine(ServerEndMatch(sender, false));
         }
 
+<<<<<<< Updated upstream
         public void OnPlayerDisconnected(NetworkConnection conn)
+=======
+        public void OnPlayerDisconnected(NetworkConnectionToClient conn)
+>>>>>>> Stashed changes
         {
             // Check that the disconnecting client is a player in this match
             if (player1 == conn.identity || player2 == conn.identity)
@@ -264,7 +268,11 @@ namespace Mirror.Examples.MultipleMatch
             }
         }
 
+<<<<<<< Updated upstream
         public IEnumerator ServerEndMatch(NetworkConnection conn, bool disconnected)
+=======
+        public IEnumerator ServerEndMatch(NetworkConnectionToClient conn, bool disconnected)
+>>>>>>> Stashed changes
         {
             canvasController.OnPlayerDisconnected -= OnPlayerDisconnected;
 

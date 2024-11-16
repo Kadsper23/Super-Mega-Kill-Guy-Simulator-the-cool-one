@@ -17,7 +17,13 @@ namespace Mirror.Weaver
 
         public static MethodDefinition ProcessTargetRpcInvoke(TypeDefinition td, MethodDefinition md, MethodDefinition rpcCallFunc)
         {
+<<<<<<< Updated upstream
             MethodDefinition rpc = new MethodDefinition(Weaver.InvokeRpcPrefix + md.Name, MethodAttributes.Family |
+=======
+            string trgName = Weaver.GenerateMethodName(Weaver.InvokeRpcPrefix, md);
+
+            MethodDefinition rpc = new MethodDefinition(trgName, MethodAttributes.Family |
+>>>>>>> Stashed changes
                     MethodAttributes.Static |
                     MethodAttributes.HideBySig,
                 WeaverTypes.Import(typeof(void)));
@@ -34,9 +40,22 @@ namespace Mirror.Weaver
             // NetworkConnection parameter is optional
             if (HasNetworkConnectionParameter(md))
             {
+<<<<<<< Updated upstream
                 // if call has NetworkConnection write clients connection as first arg
                 //ClientScene.readyconnection
                 worker.Emit(OpCodes.Call, WeaverTypes.ReadyConnectionReference);
+=======
+                // on server, the NetworkConnection parameter is a connection to client.
+                // when the rpc is invoked on the client, it still has the same
+                // function signature. we pass in the connection to server,
+                // which is cleaner than just passing null)
+                //NetworkClient.readyconnection
+                //
+                // TODO
+                // a) .connectionToServer = best solution. no doubt.
+                // b) NetworkClient.connection for now. add TODO to not use static later.
+                worker.Emit(OpCodes.Call, weaverTypes.NetworkClientConnectionReference);
+>>>>>>> Stashed changes
             }
 
             // process reader parameters and skip first one if first one is NetworkConnection
@@ -115,10 +134,15 @@ namespace Mirror.Weaver
                 // null
                 worker.Emit(OpCodes.Ldnull);
             }
+<<<<<<< Updated upstream
             worker.Emit(OpCodes.Ldtoken, td);
             // invokerClass
             worker.Emit(OpCodes.Call, WeaverTypes.getTypeFromHandleReference);
             worker.Emit(OpCodes.Ldstr, rpcName);
+=======
+            // pass full function name to avoid ClassA.Func <-> ClassB.Func collisions
+            worker.Emit(OpCodes.Ldstr, md.FullName);
+>>>>>>> Stashed changes
             // writer
             worker.Emit(OpCodes.Ldloc_0);
             worker.Emit(OpCodes.Ldc_I4, targetRpcAttr.GetField("channel", 0));

@@ -3,6 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/*
+	Documentation: https://mirror-networking.gitbook.io/docs/components/network-manager
+	API Reference: https://mirror-networking.com/docs/api/Mirror.NetworkManager.html
+*/
+
 namespace Mirror.Examples.MultipleAdditiveScenes
 {
     [AddComponentMenu("")]
@@ -53,8 +58,14 @@ namespace Mirror.Examples.MultipleAdditiveScenes
             playerScore.scoreIndex = clientIndex / subScenes.Count;
             playerScore.matchIndex = clientIndex % subScenes.Count;
 
+<<<<<<< Updated upstream
             clientIndex++;
 
+=======
+            // Do this only on server, not on clients
+            // This is what allows the NetworkSceneChecker on player and scene objects
+            // to isolate matches per scene instance on server.
+>>>>>>> Stashed changes
             if (subScenes.Count > 0)
                 SceneManager.MoveGameObjectToScene(conn.identity.gameObject, subScenes[clientIndex % subScenes.Count]);
         }

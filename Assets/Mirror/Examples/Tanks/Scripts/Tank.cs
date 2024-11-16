@@ -8,6 +8,11 @@ namespace Mirror.Examples.Tanks
         [Header("Components")]
         public NavMeshAgent agent;
         public Animator animator;
+<<<<<<< Updated upstream
+=======
+        public TextMesh healthBar;
+        public Transform turret;
+>>>>>>> Stashed changes
 
         [Header("Movement")]
         public float rotationSpeed = 100;
@@ -16,9 +21,22 @@ namespace Mirror.Examples.Tanks
         public KeyCode shootKey = KeyCode.Space;
         public GameObject projectilePrefab;
         public Transform projectileMount;
+<<<<<<< Updated upstream
 
         void Update()
         {
+=======
+
+        [Header("Stats")]
+        [SyncVar] public int health = 4;
+
+        void Update()
+        {
+            // always update health bar.
+            // (SyncVar hook would only update on clients, not on server)
+            healthBar.text = new string('-', health);
+
+>>>>>>> Stashed changes
             // movement for local player
             if (!isLocalPlayer) return;
 
@@ -54,5 +72,31 @@ namespace Mirror.Examples.Tanks
         {
             animator.SetTrigger("Shoot");
         }
+<<<<<<< Updated upstream
+=======
+
+        [ServerCallback]
+        void OnTriggerEnter(Collider other)
+        {
+            if (other.GetComponent<Projectile>() != null)
+            {
+                --health;
+                if (health == 0)
+                    NetworkServer.Destroy(gameObject);
+            }
+        }
+
+        void RotateTurret()
+        {
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit, 100))
+            {
+                Debug.DrawLine(ray.origin, hit.point);
+                Vector3 lookRotation = new Vector3(hit.point.x, turret.transform.position.y, hit.point.z);
+                turret.transform.LookAt(lookRotation);
+            }
+        }
+>>>>>>> Stashed changes
     }
 }

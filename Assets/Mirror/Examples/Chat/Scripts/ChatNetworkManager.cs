@@ -1,5 +1,10 @@
 using UnityEngine;
 
+/*
+	Documentation: https://mirror-networking.gitbook.io/docs/components/network-manager
+	API Reference: https://mirror-networking.com/docs/api/Mirror.NetworkManager.html
+*/
+
 namespace Mirror.Examples.Chat
 {
     [AddComponentMenu("")]
@@ -19,7 +24,15 @@ namespace Mirror.Examples.Chat
 
         public struct CreatePlayerMessage : NetworkMessage
         {
+<<<<<<< Updated upstream
             public string name;
+=======
+            // remove player name from the HashSet
+            if (conn.authenticationData != null)
+                Player.playerNames.Remove((string)conn.authenticationData);
+
+            base.OnServerDisconnect(conn);
+>>>>>>> Stashed changes
         }
 
         public override void OnStartServer()

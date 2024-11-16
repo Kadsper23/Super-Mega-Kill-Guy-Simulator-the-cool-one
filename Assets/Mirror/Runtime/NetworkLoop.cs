@@ -26,7 +26,15 @@
 //      to the beginning of PostLateUpdate doesn't actually work.
 using System;
 using UnityEngine;
+<<<<<<< Updated upstream
 #if UNITY_2019_1_OR_NEWER
+=======
+
+// PlayerLoop and LowLevel were in the Experimental namespace until 2019.3
+// https://docs.unity3d.com/2019.2/Documentation/ScriptReference/Experimental.LowLevel.PlayerLoop.html
+// https://docs.unity3d.com/2019.3/Documentation/ScriptReference/LowLevel.PlayerLoop.html
+#if UNITY_2019_3_OR_NEWER
+>>>>>>> Stashed changes
 using UnityEngine.LowLevel;
 using UnityEngine.PlayerLoop;
 #else
@@ -41,6 +49,21 @@ namespace Mirror
         // helper enum to add loop to begin/end of subSystemList
         internal enum AddMode { Beginning, End }
 
+<<<<<<< Updated upstream
+=======
+        // callbacks in case someone needs to use early/lateupdate too.
+        public static Action OnEarlyUpdate;
+        public static Action OnLateUpdate;
+
+        // RuntimeInitializeOnLoadMethod -> fast playmode without domain reload
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
+        static void ResetStatics()
+        {
+            OnEarlyUpdate = null;
+            OnLateUpdate = null;
+        }
+
+>>>>>>> Stashed changes
         // helper function to find an update function's index in a player loop
         // type. this is used for testing to guarantee our functions are added
         // at the beginning/end properly.
@@ -101,8 +124,12 @@ namespace Mirror
                 {
                     // shift to the right, write into first array element
                     Array.Copy(playerLoop.subSystemList, 0, playerLoop.subSystemList, 1, playerLoop.subSystemList.Length - 1);
+<<<<<<< Updated upstream
                     playerLoop.subSystemList[0].type = ownerType;
                     playerLoop.subSystemList[0].updateDelegate = function;
+=======
+                    playerLoop.subSystemList[0] = system;
+>>>>>>> Stashed changes
 
                 }
                 // append our custom loop to the end
@@ -140,11 +167,23 @@ namespace Mirror
             Debug.Log("Mirror: adding Network[Early/Late]Update to Unity...");
 
             // get loop
+<<<<<<< Updated upstream
             // TODO 2019 has GetCURRENTPlayerLoop which is safe to use without
             // breaking other custom system's custom loops. Let's use Default
             // for now until we upgrade to 2019 so we have the same behaviour
             // at all times (instead of different loop behavior on 2018/2019)
             PlayerLoopSystem playerLoop = PlayerLoop.GetDefaultPlayerLoop();
+=======
+            // 2019 has GetCURRENTPlayerLoop which is safe to use without
+            // breaking other custom system's custom loops.
+            // see also: https://github.com/vis2k/Mirror/pull/2627/files
+            PlayerLoopSystem playerLoop =
+#if UNITY_2019_3_OR_NEWER
+                PlayerLoop.GetCurrentPlayerLoop();
+#else
+                PlayerLoop.GetDefaultPlayerLoop();
+#endif
+>>>>>>> Stashed changes
 
             // add NetworkEarlyUpdate to the end of EarlyUpdate so it runs after
             // any Unity initializations but before the first Update/FixedUpdate
@@ -161,14 +200,24 @@ namespace Mirror
 
         static void NetworkEarlyUpdate()
         {
+<<<<<<< Updated upstream
             //Debug.Log("NetworkEarlyUpdate @ " + Time.time);
+=======
+            //Debug.Log($"NetworkEarlyUpdate {Time.time}");
+>>>>>>> Stashed changes
             NetworkServer.NetworkEarlyUpdate();
             NetworkClient.NetworkEarlyUpdate();
         }
 
         static void NetworkLateUpdate()
         {
+<<<<<<< Updated upstream
             //Debug.Log("NetworkLateUpdate @ " + Time.time);
+=======
+            //Debug.Log($"NetworkLateUpdate {Time.time}");
+            // invoke event before mirror does its final late updating.
+            OnLateUpdate?.Invoke();
+>>>>>>> Stashed changes
             NetworkServer.NetworkLateUpdate();
             NetworkClient.NetworkLateUpdate();
         }

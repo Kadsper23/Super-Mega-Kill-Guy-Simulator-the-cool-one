@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< Updated upstream:Assets/Sprites/Examples/Cloud/PongWithListServer/Prefabs/Empty Player.prefab.meta
 guid: ba07442332d3d1e4c9df5b14ab3fbb2c
+=======
+guid: 4ab0a427bdc13244499c6e044ad7eb40
+>>>>>>> Stashed changes:Assets/Mirror/Examples/RigidbodyPhysics/Prefabs/Empty Player.prefab.meta
 PrefabImporter:
   externalObjects: {}
   userData: ''

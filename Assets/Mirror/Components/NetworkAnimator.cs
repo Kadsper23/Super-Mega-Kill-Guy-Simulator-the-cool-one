@@ -13,9 +13,15 @@ namespace Mirror
     /// <para>If the object has authority on the server, then it should be animated on the server and state information will be sent to all clients. This is common for objects not related to a specific client, such as an enemy unit.</para>
     /// <para>The NetworkAnimator synchronizes all animation parameters of the selected Animator. It does not automatically synchronize triggers. The function SetTrigger can by used by an object with authority to fire an animation trigger on other clients.</para>
     /// </remarks>
+<<<<<<< Updated upstream
     [AddComponentMenu("Network/NetworkAnimator")]
     [RequireComponent(typeof(NetworkIdentity))]
     [HelpURL("https://mirror-networking.com/docs/Articles/Components/NetworkAnimator.html")]
+=======
+    [AddComponentMenu("Network/Network Animator")]
+    [RequireComponent(typeof(NetworkIdentity))]
+    [HelpURL("https://mirror-networking.gitbook.io/docs/components/network-animator")]
+>>>>>>> Stashed changes
     public class NetworkAnimator : NetworkBehaviour
     {
         [Header("Authority")]
@@ -34,7 +40,11 @@ namespace Mirror
         /// <summary>
         /// Syncs animator.speed
         /// </summary>
+<<<<<<< Updated upstream
         [SyncVar(hook = nameof(onAnimatorSpeedChanged))]
+=======
+        [SyncVar(hook = nameof(OnAnimatorSpeedChanged))]
+>>>>>>> Stashed changes
         float animatorSpeed;
         float previousSpeed;
 
@@ -311,7 +321,11 @@ namespace Mirror
         bool WriteParameters(NetworkWriter writer, bool forceAll = false)
         {
             ulong dirtyBits = forceAll ? (~0ul) : NextDirtyBits();
+<<<<<<< Updated upstream
             writer.WriteUInt64(dirtyBits);
+=======
+            writer.WriteULong(dirtyBits);
+>>>>>>> Stashed changes
             for (int i = 0; i < parameters.Length; i++)
             {
                 if ((dirtyBits & (1ul << i)) == 0)
@@ -342,7 +356,11 @@ namespace Mirror
             bool animatorEnabled = animator.enabled;
             // need to read values from NetworkReader even if animator is disabled
 
+<<<<<<< Updated upstream
             ulong dirtyBits = reader.ReadUInt64();
+=======
+            ulong dirtyBits = reader.ReadULong();
+>>>>>>> Stashed changes
             for (int i = 0; i < parameters.Length; i++)
             {
                 if ((dirtyBits & (1ul << i)) == 0)
@@ -386,16 +404,28 @@ namespace Mirror
                     if (animator.IsInTransition(i))
                     {
                         AnimatorStateInfo st = animator.GetNextAnimatorStateInfo(i);
+<<<<<<< Updated upstream
                         writer.WriteInt32(st.fullPathHash);
                         writer.WriteSingle(st.normalizedTime);
+=======
+                        writer.WriteInt(st.fullPathHash);
+                        writer.WriteFloat(st.normalizedTime);
+>>>>>>> Stashed changes
                     }
                     else
                     {
                         AnimatorStateInfo st = animator.GetCurrentAnimatorStateInfo(i);
+<<<<<<< Updated upstream
                         writer.WriteInt32(st.fullPathHash);
                         writer.WriteSingle(st.normalizedTime);
                     }
                     writer.WriteSingle(animator.GetLayerWeight(i));
+=======
+                        writer.WriteInt(st.fullPathHash);
+                        writer.WriteFloat(st.normalizedTime);
+                    }
+                    writer.WriteFloat(animator.GetLayerWeight(i));
+>>>>>>> Stashed changes
                 }
                 WriteParameters(writer, initialState);
                 return true;
@@ -415,9 +445,15 @@ namespace Mirror
             {
                 for (int i = 0; i < animator.layerCount; i++)
                 {
+<<<<<<< Updated upstream
                     int stateHash = reader.ReadInt32();
                     float normalizedTime = reader.ReadSingle();
                     animator.SetLayerWeight(i, reader.ReadSingle());
+=======
+                    int stateHash = reader.ReadInt();
+                    float normalizedTime = reader.ReadFloat();
+                    animator.SetLayerWeight(i, reader.ReadFloat());
+>>>>>>> Stashed changes
                     animator.Play(stateHash, i, normalizedTime);
                 }
 

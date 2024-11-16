@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -120,10 +121,55 @@ namespace Mirror
             }
 
             base.OnValidate();
+<<<<<<< Updated upstream
+=======
         }
 
         public void ReadyStatusChanged()
         {
+            int CurrentPlayers = 0;
+            int ReadyPlayers = 0;
+
+            foreach (NetworkRoomPlayer item in roomSlots)
+            {
+                if (item != null)
+                {
+                    CurrentPlayers++;
+                    if (item.readyToBegin)
+                        ReadyPlayers++;
+                }
+            }
+
+            if (CurrentPlayers == ReadyPlayers)
+                CheckReadyToBegin();
+            else
+                allPlayersReady = false;
+        }
+
+        /// <summary>
+        /// Called on the server when a client is ready.
+        /// <para>The default implementation of this function calls NetworkServer.SetClientReady() to continue the network setup process.</para>
+        /// </summary>
+        /// <param name="conn">Connection from client.</param>
+        public override void OnServerReady(NetworkConnectionToClient conn)
+        {
+            Debug.Log($"NetworkRoomManager OnServerReady {conn}");
+            base.OnServerReady(conn);
+
+            if (conn != null && conn.identity != null)
+            {
+                GameObject roomPlayer = conn.identity.gameObject;
+
+                // if null or not a room player, don't replace it
+                if (roomPlayer != null && roomPlayer.GetComponent<NetworkRoomPlayer>() != null)
+                    SceneLoadedForPlayer(conn, roomPlayer);
+            }
+>>>>>>> Stashed changes
+        }
+
+        public void ReadyStatusChanged()
+        {
+<<<<<<< Updated upstream
             int CurrentPlayers = 0;
             int ReadyPlayers = 0;
 
@@ -167,6 +213,10 @@ namespace Mirror
         {
             // Debug.LogFormat(LogType.Log, "NetworkRoom SceneLoadedForPlayer scene: {0} {1}", SceneManager.GetActiveScene().path, conn);
 
+=======
+            Debug.Log($"NetworkRoom SceneLoadedForPlayer scene: {SceneManager.GetActiveScene().path} {conn}");
+
+>>>>>>> Stashed changes
             if (IsSceneActive(RoomScene))
             {
                 // cant be ready in room, add to ready list
@@ -297,13 +347,25 @@ namespace Mirror
 
             OnRoomServerDisconnect(conn);
             base.OnServerDisconnect(conn);
+<<<<<<< Updated upstream
+=======
+
+#if UNITY_SERVER
+            if (numPlayers < 1)
+                StopServer();
+#endif
+>>>>>>> Stashed changes
         }
 
         // Sequential index used in round-robin deployment of players into instances and score positioning
         public int clientIndex;
 
         /// <summary>
+<<<<<<< Updated upstream
         /// Called on the server when a client adds a new player with ClientScene.AddPlayer.
+=======
+        /// Called on the server when a client adds a new player with NetworkClient.AddPlayer.
+>>>>>>> Stashed changes
         /// <para>The default implementation for this function creates a new player object from the playerPrefab.</para>
         /// </summary>
         /// <param name="conn">Connection from client.</param>
@@ -658,6 +720,12 @@ namespace Mirror
         /// </summary>
         /// <param name="conn">The connection that finished loading a new networked scene.</param>
         public virtual void OnRoomClientSceneChanged(NetworkConnection conn) {}
+
+        /// <summary>
+        /// Called on the client when adding a player to the room fails.
+        /// <para>This could be because the room is full, or the connection is not allowed to have more players.</para>
+        /// </summary>
+        public virtual void OnRoomClientAddPlayerFailed() {}
 
         /// <summary>
         /// Called on the client when adding a player to the room fails.

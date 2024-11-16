@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -12,6 +13,11 @@ namespace Mirror.Authenticators
         public string username;
         public string password;
 
+<<<<<<< Updated upstream
+=======
+        readonly HashSet<NetworkConnection> connectionsPendingDisconnect = new HashSet<NetworkConnection>();
+
+>>>>>>> Stashed changes
         #region Messages
 
         public struct AuthRequestMessage : NetworkMessage
@@ -148,7 +154,11 @@ namespace Mirror.Authenticators
                 authPassword = password
             };
 
+<<<<<<< Updated upstream
             conn.Send(authRequestMessage);
+=======
+            NetworkClient.connection.Send(authRequestMessage);
+>>>>>>> Stashed changes
         }
 
         /// <summary>

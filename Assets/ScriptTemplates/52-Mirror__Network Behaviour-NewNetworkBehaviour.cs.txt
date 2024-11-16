@@ -3,10 +3,19 @@ using Mirror;
 using System.Collections.Generic;
 
 /*
+<<<<<<< Updated upstream
 	Documentation: https://mirror-networking.com/docs/Guides/NetworkBehaviour.html
 	API Reference: https://mirror-networking.com/docs/api/Mirror.NetworkBehaviour.html
 */
 
+=======
+	Documentation: https://mirror-networking.gitbook.io/docs/guides/networkbehaviour
+	API Reference: https://mirror-networking.com/docs/api/Mirror.NetworkBehaviour.html
+*/
+
+// NOTE: Do not put objects in DontDestroyOnLoad (DDOL) in Awake.  You can do that in Start instead.
+
+>>>>>>> Stashed changes
 public class #SCRIPTNAME# : NetworkBehaviour
 {
     #region Start & Stop Callbacks

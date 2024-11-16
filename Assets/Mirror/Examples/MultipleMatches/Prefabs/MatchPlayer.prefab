@@ -46,7 +46,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneId: 0
   serverOnly: 0
+<<<<<<< Updated upstream
   m_AssetId: 
+=======
+  visible: 0
+  m_AssetId: 11d2414f1e120a14c98cba6866e5348f
+>>>>>>> Stashed changes
   hasSpawned: 0
 --- !u!114 &-3043620344775994659
 MonoBehaviour:
@@ -62,4 +67,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
+<<<<<<< Updated upstream
   currentMatchDebug: 
+=======
+>>>>>>> Stashed changes

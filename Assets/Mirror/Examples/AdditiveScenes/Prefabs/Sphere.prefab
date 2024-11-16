@@ -48,6 +48,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneId: 0
   serverOnly: 0
+<<<<<<< Updated upstream
   m_AssetId: 
 --- !u!114 &855244094988030908
 MonoBehaviour:
@@ -70,6 +71,11 @@ MonoBehaviour:
   castLayers:
     serializedVersion: 2
     m_Bits: 256
+=======
+  visible: 0
+  m_AssetId: f6d08eb9a8e35d84fa30a7e3ae64181a
+  hasSpawned: 0
+>>>>>>> Stashed changes
 --- !u!135 &855244094988030904
 SphereCollider:
   m_ObjectHideFlags: 0

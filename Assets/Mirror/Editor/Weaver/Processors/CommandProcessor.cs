@@ -15,7 +15,11 @@ namespace Mirror.Weaver
                 NetworkWriter networkWriter = new NetworkWriter();
                 networkWriter.Write(thrusting);
                 networkWriter.WritePackedUInt32((uint)spin);
+<<<<<<< Updated upstream
                 base.SendCommandInternal(cmdName, networkWriter, cmdName);
+=======
+                base.SendCommandInternal(cmdName, networkWriter, channel);
+>>>>>>> Stashed changes
             }
 
             public void CallCmdThrust(float thrusting, int spin)
@@ -53,10 +57,15 @@ namespace Mirror.Weaver
             // invoke internal send and return
             // load 'base.' to call the SendCommand function with
             worker.Emit(OpCodes.Ldarg_0);
+<<<<<<< Updated upstream
             worker.Emit(OpCodes.Ldtoken, td);
             // invokerClass
             worker.Emit(OpCodes.Call, WeaverTypes.getTypeFromHandleReference);
             worker.Emit(OpCodes.Ldstr, cmdName);
+=======
+            // pass full function name to avoid ClassA.Func <-> ClassB.Func collisions
+            worker.Emit(OpCodes.Ldstr, md.FullName);
+>>>>>>> Stashed changes
             // writer
             worker.Emit(OpCodes.Ldloc_0);
             worker.Emit(OpCodes.Ldc_I4, channel);
@@ -83,7 +92,13 @@ namespace Mirror.Weaver
         */
         public static MethodDefinition ProcessCommandInvoke(TypeDefinition td, MethodDefinition method, MethodDefinition cmdCallFunc)
         {
+<<<<<<< Updated upstream
             MethodDefinition cmd = new MethodDefinition(Weaver.InvokeRpcPrefix + method.Name,
+=======
+            string cmdName = Weaver.GenerateMethodName(Weaver.InvokeRpcPrefix, method);
+
+            MethodDefinition cmd = new MethodDefinition(cmdName,
+>>>>>>> Stashed changes
                 MethodAttributes.Family | MethodAttributes.Static | MethodAttributes.HideBySig,
                 WeaverTypes.Import(typeof(void)));
 

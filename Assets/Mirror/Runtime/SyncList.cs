@@ -8,6 +8,7 @@ namespace Mirror
     [Obsolete("Use SyncList<string> instead")]
     public class SyncListString : SyncList<string>
     {
+<<<<<<< Updated upstream
     }
 
     // Deprecated 10/02/2020
@@ -36,6 +37,8 @@ namespace Mirror
 
     public class SyncList<T> : IList<T>, IReadOnlyList<T>, SyncObject
     {
+=======
+>>>>>>> Stashed changes
         public delegate void SyncListChanged(Operation op, int itemIndex, T oldItem, T newItem);
 
         readonly IList<T> objects;
@@ -193,7 +196,11 @@ namespace Mirror
             // This list can now only be modified by synchronization
             IsReadOnly = true;
 
+<<<<<<< Updated upstream
             int changesCount = (int)reader.ReadUInt32();
+=======
+            int changesCount = (int)reader.ReadUInt();
+>>>>>>> Stashed changes
 
             for (int i = 0; i < changesCount; i++)
             {

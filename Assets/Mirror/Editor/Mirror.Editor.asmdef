@@ -2,7 +2,11 @@
     "name": "Mirror.Editor",
     "references": [
         "Mirror",
+<<<<<<< Updated upstream
         "Mirror.Weaver"
+=======
+        "Unity.Mirror.CodeGen"
+>>>>>>> Stashed changes
     ],
     "optionalUnityReferences": [],
     "includePlatforms": [

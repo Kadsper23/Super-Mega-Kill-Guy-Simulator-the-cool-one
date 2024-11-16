@@ -1,4 +1,9 @@
 using System;
+<<<<<<< Updated upstream
+=======
+using System.Collections.Generic;
+using System.Runtime.CompilerServices;
+>>>>>>> Stashed changes
 
 namespace Mirror
 {
@@ -27,5 +32,32 @@ namespace Mirror
             return func.Method.Name;
 #endif
         }
+<<<<<<< Updated upstream
+=======
+
+        // helper function to copy to List<T>
+        // C# only provides CopyTo(T[])
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static void CopyTo<T>(this IEnumerable<T> source, List<T> destination)
+        {
+            // foreach allocates. use AddRange.
+            destination.AddRange(source);
+        }
+
+#if !UNITY_2021_OR_NEWER
+        // Unity 2020 and earlier doesn't have Queue.TryDequeue which we need for batching.
+        public static bool TryDequeue<T>(this Queue<T> source, out T element)
+        {
+            if (source.Count > 0)
+            {
+                element = source.Dequeue();
+                return true;
+            }
+
+            element = default;
+            return false;
+        }
+#endif
+>>>>>>> Stashed changes
     }
 }

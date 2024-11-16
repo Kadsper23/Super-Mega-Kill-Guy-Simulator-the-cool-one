@@ -93,11 +93,19 @@ namespace Mirror.Examples.Basic
         /// </summary>
         public override void OnStartClient()
         {
+<<<<<<< Updated upstream
             // Activate the main panel
             ((BasicNetManager)NetworkManager.singleton).mainPanel.gameObject.SetActive(true);
 
             // Instantiate the player UI as child of the Players Panel
             playerUI = Instantiate(playerUIPrefab, ((BasicNetManager)NetworkManager.singleton).playersPanel);
+=======
+            Debug.Log("OnStartClient");
+
+            // Instantiate the player UI as child of the Players Panel
+            playerUIObject = Instantiate(playerUIPrefab, CanvasUI.instance.playersPanel);
+            playerUI = playerUIObject.GetComponent<PlayerUI>();
+>>>>>>> Stashed changes
 
             // Set this player object in PlayerUI to wire up event handlers
             playerUI.GetComponent<PlayerUI>().SetPlayer(this, isLocalPlayer);
@@ -109,6 +117,34 @@ namespace Mirror.Examples.Basic
         }
 
         /// <summary>
+<<<<<<< Updated upstream
+=======
+        /// Called when the local player object has been set up.
+        /// <para>This happens after OnStartClient(), as it is triggered by an ownership message from the server. This is an appropriate place to activate components or functionality that should only be active for the local player, such as cameras and input.</para>
+        /// </summary>
+        public override void OnStartLocalPlayer()
+        {
+            Debug.Log("OnStartLocalPlayer");
+
+            // Set isLocalPlayer for this Player in UI for background shading
+            playerUI.SetLocalPlayer();
+
+            // Activate the main panel
+            CanvasUI.instance.mainPanel.gameObject.SetActive(true);
+        }
+
+        /// <summary>
+        /// Called when the local player object is being stopped.
+        /// <para>This happens before OnStopClient(), as it may be triggered by an ownership message from the server, or because the player object is being destroyed. This is an appropriate place to deactivate components or functionality that should only be active for the local player, such as cameras and input.</para>
+        /// </summary>
+        public override void OnStopLocalPlayer()
+        {
+            // Disable the main panel for local player
+            CanvasUI.instance.mainPanel.gameObject.SetActive(false);
+        }
+
+        /// <summary>
+>>>>>>> Stashed changes
         /// This is invoked on clients when the server has caused this object to be destroyed.
         /// <para>This can be used as a hook to invoke effects or do client specific cleanup.</para>
         /// </summary>

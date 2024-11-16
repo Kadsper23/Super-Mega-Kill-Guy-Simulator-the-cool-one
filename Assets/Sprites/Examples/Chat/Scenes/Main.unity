@@ -225,8 +225,13 @@ RectTransform:
   - {fileID: 1231350850}
   - {fileID: 1286463573}
   - {fileID: 1863915625}
+<<<<<<< Updated upstream:Assets/Sprites/Examples/Chat/Scenes/Main.unity
   m_Father: {fileID: 1453327788}
   m_RootOrder: 2
+=======
+  m_Father: {fileID: 719573003}
+  m_RootOrder: 0
+>>>>>>> Stashed changes:Assets/Mirror/Examples/Chat/Scenes/Main.unity
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -834,6 +839,145 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 591385423}
   m_CullTransparentMesh: 0
+<<<<<<< Updated upstream:Assets/Sprites/Examples/Chat/Scenes/Main.unity
+=======
+--- !u!1 &719572997
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 719573003}
+  - component: {fileID: 719573002}
+  - component: {fileID: 719573001}
+  - component: {fileID: 719573000}
+  - component: {fileID: 719572999}
+  - component: {fileID: 719572998}
+  m_Layer: 5
+  m_Name: ChatUI
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!114 &719572998
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 719572997}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c102f62d739545269250f48327d4429, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  chatMessage: {fileID: 1231350851}
+  chatHistory: {fileID: 827598817}
+  scrollbar: {fileID: 423302021}
+  localPlayerName: 
+--- !u!114 &719572999
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 719572997}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneId: 2564614208
+  serverOnly: 0
+  visible: 0
+  m_AssetId: 
+  hasSpawned: 0
+--- !u!114 &719573000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 719572997}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 823
+--- !u!114 &719573001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 719572997}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_UiScaleMode: 0
+  m_ReferencePixelsPerUnit: 100
+  m_ScaleFactor: 1
+  m_ReferenceResolution: {x: 800, y: 600}
+  m_ScreenMatchMode: 0
+  m_MatchWidthOrHeight: 0
+  m_PhysicalUnit: 3
+  m_FallbackScreenDPI: 96
+  m_DefaultSpriteDPI: 96
+  m_DynamicPixelsPerUnit: 1
+--- !u!223 &719573002
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 719572997}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 0
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 0
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_TargetDisplay: 0
+--- !u!224 &719573003
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 719572997}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0, y: 0, z: 0}
+  m_Children:
+  - {fileID: 75860996}
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0, y: 0}
+>>>>>>> Stashed changes:Assets/Mirror/Examples/Chat/Scenes/Main.unity
 --- !u!1 &719610385
 GameObject:
   m_ObjectHideFlags: 0
@@ -981,7 +1125,11 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
+<<<<<<< Updated upstream:Assets/Sprites/Examples/Chat/Scenes/Main.unity
   m_AnchoredPosition: {x: 0.000048637, y: -30}
+=======
+  m_AnchoredPosition: {x: 0, y: -30}
+>>>>>>> Stashed changes:Assets/Mirror/Examples/Chat/Scenes/Main.unity
   m_SizeDelta: {x: 300, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &762534977
@@ -1145,8 +1293,13 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
+<<<<<<< Updated upstream:Assets/Sprites/Examples/Chat/Scenes/Main.unity
   m_AnchoredPosition: {x: 440, y: -5}
   m_SizeDelta: {x: 870, y: 137}
+=======
+  m_AnchoredPosition: {x: 556, y: -5}
+  m_SizeDelta: {x: 1102, y: 22}
+>>>>>>> Stashed changes:Assets/Mirror/Examples/Chat/Scenes/Main.unity
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &827598817
 MonoBehaviour:
@@ -2222,7 +2375,11 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 1, y: 0}
+<<<<<<< Updated upstream:Assets/Sprites/Examples/Chat/Scenes/Main.unity
   m_SizeDelta: {x: -1, y: -220.9}
+=======
+  m_SizeDelta: {x: -1, y: -595}
+>>>>>>> Stashed changes:Assets/Mirror/Examples/Chat/Scenes/Main.unity
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1335915326
 MonoBehaviour:
@@ -2362,6 +2519,25 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+<<<<<<< Updated upstream:Assets/Sprites/Examples/Chat/Scenes/Main.unity
+=======
+--- !u!114 &1453327789
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1453327784}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a77ca56c9d91af4b81b73a9907d6112, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  usernameInput: {fileID: 851154181}
+  hostButton: {fileID: 1904406266}
+  clientButton: {fileID: 1063265580}
+  errorText: {fileID: 1580038555}
+>>>>>>> Stashed changes:Assets/Mirror/Examples/Chat/Scenes/Main.unity
 --- !u!1 &1481045372
 GameObject:
   m_ObjectHideFlags: 0
@@ -2917,12 +3093,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Port: 7777
+<<<<<<< Updated upstream:Assets/Sprites/Examples/Chat/Scenes/Main.unity
   NoDelay: 1
   Interval: 10
+=======
+  DualMode: 1
+  NoDelay: 1
+  Interval: 10
+  Timeout: 10000
+>>>>>>> Stashed changes:Assets/Mirror/Examples/Chat/Scenes/Main.unity
   FastResend: 2
   CongestionWindow: 0
   SendWindowSize: 4096
   ReceiveWindowSize: 4096
+<<<<<<< Updated upstream:Assets/Sprites/Examples/Chat/Scenes/Main.unity
+=======
+  MaxRetransmit: 40
+  NonAlloc: 1
+  ReliableMaxMessageSize: 298449
+  UnreliableMaxMessageSize: 1199
+>>>>>>> Stashed changes:Assets/Mirror/Examples/Chat/Scenes/Main.unity
   debugLog: 0
   statisticsGUI: 0
   statisticsLog: 0
@@ -2941,24 +3131,35 @@ MonoBehaviour:
   dontDestroyOnLoad: 1
   runInBackground: 1
   autoStartServerBuild: 1
+<<<<<<< Updated upstream:Assets/Sprites/Examples/Chat/Scenes/Main.unity
   showDebugMessages: 0
   serverTickRate: 30
   serverBatching: 0
   serverBatchInterval: 0
+=======
+  serverTickRate: 30
+>>>>>>> Stashed changes:Assets/Mirror/Examples/Chat/Scenes/Main.unity
   offlineScene: 
   onlineScene: 
   transport: {fileID: 1783103023}
   networkAddress: localhost
   maxConnections: 100
+<<<<<<< Updated upstream:Assets/Sprites/Examples/Chat/Scenes/Main.unity
   disconnectInactiveConnections: 0
   disconnectInactiveTimeout: 60
   authenticator: {fileID: 0}
+=======
+  authenticator: {fileID: 1783103024}
+>>>>>>> Stashed changes:Assets/Mirror/Examples/Chat/Scenes/Main.unity
   playerPrefab: {fileID: 5075528875289742095, guid: e5905ffa27de84009b346b49d518ba03,
     type: 3}
   autoCreatePlayer: 0
   playerSpawnMethod: 0
   spawnPrefabs: []
+<<<<<<< Updated upstream:Assets/Sprites/Examples/Chat/Scenes/Main.unity
   chatWindow: {fileID: 75861000}
+=======
+>>>>>>> Stashed changes:Assets/Mirror/Examples/Chat/Scenes/Main.unity
 --- !u!4 &1783103026
 Transform:
   m_ObjectHideFlags: 0

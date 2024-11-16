@@ -39,7 +39,11 @@ namespace Mirror.Weaver
             return null;
         }
 
+<<<<<<< Updated upstream
         public static MethodReference TryResolveMethodInParents(TypeReference tr, AssemblyDefinition scriptDef, string name)
+=======
+        public static MethodReference TryResolveMethodInParents(TypeReference tr, AssemblyDefinition assembly, string name)
+>>>>>>> Stashed changes
         {
             if (tr == null)
             {

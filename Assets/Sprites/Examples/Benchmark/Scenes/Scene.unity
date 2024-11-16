@@ -306,19 +306,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dontDestroyOnLoad: 1
+<<<<<<< Updated upstream:Assets/Sprites/Examples/Benchmark/Scenes/Scene.unity
   runInBackground: 1
   autoStartServerBuild: 1
   showDebugMessages: 0
   serverTickRate: 30
   serverBatching: 1
   serverBatchInterval: 0
+=======
+  PersistNetworkManagerToOfflineScene: 0
+  runInBackground: 1
+  autoStartServerBuild: 1
+  serverTickRate: 30
+>>>>>>> Stashed changes:Assets/Mirror/Examples/Benchmark/Scenes/Scene.unity
   offlineScene: 
   onlineScene: 
   transport: {fileID: 1282001521}
   networkAddress: localhost
   maxConnections: 1000
-  disconnectInactiveConnections: 0
-  disconnectInactiveTimeout: 60
   authenticator: {fileID: 0}
   playerPrefab: {fileID: 449802645721213856, guid: e1299008405d14b17b1ca459a6cd44a2,
     type: 3}
@@ -343,12 +348,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Port: 7777
+<<<<<<< Updated upstream:Assets/Sprites/Examples/Benchmark/Scenes/Scene.unity
   NoDelay: 1
   Interval: 10
+=======
+  DualMode: 1
+  NoDelay: 1
+  Interval: 10
+  Timeout: 10000
+>>>>>>> Stashed changes:Assets/Mirror/Examples/Benchmark/Scenes/Scene.unity
   FastResend: 2
   CongestionWindow: 0
   SendWindowSize: 4096
   ReceiveWindowSize: 4096
+<<<<<<< Updated upstream:Assets/Sprites/Examples/Benchmark/Scenes/Scene.unity
+=======
+  NonAlloc: 1
+>>>>>>> Stashed changes:Assets/Mirror/Examples/Benchmark/Scenes/Scene.unity
   debugLog: 0
   statisticsGUI: 0
   statisticsLog: 0
@@ -364,7 +380,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39adc6e09d5544ed955a50ce8600355a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< Updated upstream:Assets/Sprites/Examples/Benchmark/Scenes/Scene.unity
   visRange: 999
+=======
+  visRange: 200
+>>>>>>> Stashed changes:Assets/Mirror/Examples/Benchmark/Scenes/Scene.unity
   rebuildInterval: 1
   checkMethod: 0
   showSlider: 1

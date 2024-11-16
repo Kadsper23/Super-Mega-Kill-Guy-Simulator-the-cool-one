@@ -76,10 +76,18 @@ TextureImporter:
     physicsShape: []
     bones: []
     spriteID: ''
+<<<<<<< Updated upstream:Assets/Sprites/Examples/Tanks/Models/(Public Domain) Recon_Tank/Normal.png.meta
+=======
+    internalID: 0
+>>>>>>> Stashed changes:Assets/Mirror/Examples/AdditiveLevels/Textures/Back_Tex.jpeg.meta
     vertices: []
     indices: ''
     edges: []
     weights: []
+<<<<<<< Updated upstream:Assets/Sprites/Examples/Tanks/Models/(Public Domain) Recon_Tank/Normal.png.meta
+=======
+    secondaryTextures: []
+>>>>>>> Stashed changes:Assets/Mirror/Examples/AdditiveLevels/Textures/Back_Tex.jpeg.meta
   spritePackingTag: ''
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

@@ -1,7 +1,11 @@
 ﻿using UnityEngine;
 
 /*
+<<<<<<< Updated upstream
 	Documentation: https://mirror-networking.com/docs/Components/NetworkManager.html
+=======
+	Documentation: https://mirror-networking.gitbook.io/docs/components/network-manager
+>>>>>>> Stashed changes
 	API Reference: https://mirror-networking.com/docs/api/Mirror.NetworkManager.html
 */
 

@@ -2,11 +2,19 @@ using UnityEngine;
 using Mirror;
 
 /*
+<<<<<<< Updated upstream
 	Documentation: https://mirror-networking.com/docs/Components/NetworkRoomManager.html
 	API Reference: https://mirror-networking.com/docs/api/Mirror.NetworkRoomManager.html
 
 	See Also: NetworkManager
 	Documentation: https://mirror-networking.com/docs/Components/NetworkManager.html
+=======
+	Documentation: https://mirror-networking.gitbook.io/docs/components/network-room-manager
+	API Reference: https://mirror-networking.com/docs/api/Mirror.NetworkRoomManager.html
+
+	See Also: NetworkManager
+	Documentation: https://mirror-networking.gitbook.io/docs/components/network-manager
+>>>>>>> Stashed changes
 	API Reference: https://mirror-networking.com/docs/api/Mirror.NetworkManager.html
 */
 
@@ -44,13 +52,21 @@ public class #SCRIPTNAME# : NetworkRoomManager
     /// This is called on the server when a new client connects to the server.
     /// </summary>
     /// <param name="conn">The new connection.</param>
+<<<<<<< Updated upstream
     public override void OnRoomServerConnect(NetworkConnection conn) { }
+=======
+    public override void OnRoomServerConnect(NetworkConnectionToClient conn) { }
+>>>>>>> Stashed changes
 
     /// <summary>
     /// This is called on the server when a client disconnects.
     /// </summary>
     /// <param name="conn">The connection that disconnected.</param>
+<<<<<<< Updated upstream
     public override void OnRoomServerDisconnect(NetworkConnection conn) { }
+=======
+    public override void OnRoomServerDisconnect(NetworkConnectionToClient conn) { }
+>>>>>>> Stashed changes
 
     /// <summary>
     /// This is called on the server when a networked scene finishes loading.
@@ -64,7 +80,11 @@ public class #SCRIPTNAME# : NetworkRoomManager
     /// </summary>
     /// <param name="conn">The connection the player object is for.</param>
     /// <returns>The new room-player object.</returns>
+<<<<<<< Updated upstream
     public override GameObject OnRoomServerCreateRoomPlayer(NetworkConnection conn)
+=======
+    public override GameObject OnRoomServerCreateRoomPlayer(NetworkConnectionToClient conn)
+>>>>>>> Stashed changes
     {
         return base.OnRoomServerCreateRoomPlayer(conn);
     }
@@ -76,7 +96,11 @@ public class #SCRIPTNAME# : NetworkRoomManager
     /// <param name="conn">The connection the player object is for.</param>
     /// <param name="roomPlayer">The room player object for this connection.</param>
     /// <returns>A new GamePlayer object.</returns>
+<<<<<<< Updated upstream
     public override GameObject OnRoomServerCreateGamePlayer(NetworkConnection conn, GameObject roomPlayer)
+=======
+    public override GameObject OnRoomServerCreateGamePlayer(NetworkConnectionToClient conn, GameObject roomPlayer)
+>>>>>>> Stashed changes
     {
         return base.OnRoomServerCreateGamePlayer(conn, roomPlayer);
     }
@@ -87,7 +111,11 @@ public class #SCRIPTNAME# : NetworkRoomManager
     /// <para>See OnRoomServerCreateGamePlayer to customize the player object for the initial GamePlay scene.</para>
     /// </summary>
     /// <param name="conn">The connection the player object is for.</param>
+<<<<<<< Updated upstream
     public override void OnRoomServerAddPlayer(NetworkConnection conn)
+=======
+    public override void OnRoomServerAddPlayer(NetworkConnectionToClient conn)
+>>>>>>> Stashed changes
     {
         base.OnRoomServerAddPlayer(conn);
     }
@@ -100,7 +128,11 @@ public class #SCRIPTNAME# : NetworkRoomManager
     /// <param name="roomPlayer">The room player object.</param>
     /// <param name="gamePlayer">The game player object.</param>
     /// <returns>False to not allow this player to replace the room player.</returns>
+<<<<<<< Updated upstream
     public override bool OnRoomServerSceneLoadedForPlayer(NetworkConnection conn, GameObject roomPlayer, GameObject gamePlayer)
+=======
+    public override bool OnRoomServerSceneLoadedForPlayer(NetworkConnectionToClient conn, GameObject roomPlayer, GameObject gamePlayer)
+>>>>>>> Stashed changes
     {
         return base.OnRoomServerSceneLoadedForPlayer(conn, roomPlayer, gamePlayer);
     }
@@ -137,19 +169,30 @@ public class #SCRIPTNAME# : NetworkRoomManager
     /// <summary>
     /// This is called on the client when it connects to server.
     /// </summary>
+<<<<<<< Updated upstream
     /// <param name="conn">The connection that connected.</param>
     public override void OnRoomClientConnect(NetworkConnection conn) { }
+=======
+    public override void OnRoomClientConnect() { }
+>>>>>>> Stashed changes
 
     /// <summary>
     /// This is called on the client when disconnected from a server.
     /// </summary>
+<<<<<<< Updated upstream
     /// <param name="conn">The connection that disconnected.</param>
     public override void OnRoomClientDisconnect(NetworkConnection conn) { }
+=======
+    public override void OnRoomClientDisconnect() { }
+>>>>>>> Stashed changes
 
     /// <summary>
     /// This is called on the client when a client is started.
     /// </summary>
+<<<<<<< Updated upstream
     /// <param name="roomClient">The connection for the room.</param>
+=======
+>>>>>>> Stashed changes
     public override void OnRoomStartClient() { }
 
     /// <summary>
@@ -160,8 +203,12 @@ public class #SCRIPTNAME# : NetworkRoomManager
     /// <summary>
     /// This is called on the client when the client is finished loading a new networked scene.
     /// </summary>
+<<<<<<< Updated upstream
     /// <param name="conn">The connection that finished loading a new networked scene.</param>
     public override void OnRoomClientSceneChanged(NetworkConnection conn) { }
+=======
+    public override void OnRoomClientSceneChanged() { }
+>>>>>>> Stashed changes
 
     /// <summary>
     /// Called on the client when adding a player to the room fails.

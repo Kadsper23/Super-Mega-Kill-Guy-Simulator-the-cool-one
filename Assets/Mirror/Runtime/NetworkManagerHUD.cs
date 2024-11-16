@@ -1,11 +1,15 @@
 // vis2k: GUILayout instead of spacey += ...; removed Update hotkeys to avoid
 // confusion if someone accidentally presses one.
+<<<<<<< Updated upstream
 
 using System;
+=======
+>>>>>>> Stashed changes
 using UnityEngine;
 
 namespace Mirror
 {
+<<<<<<< Updated upstream
     /// <summary>
     /// An extension for the NetworkManager that displays a default HUD for controlling the network state of the game.
     /// <para>This component also shows useful internal state for the networking system in the inspector window of the editor. It allows users to view connections, networked objects, message handlers, and packet statistics. This information can be helpful when debugging networked games.</para>
@@ -14,10 +18,18 @@ namespace Mirror
     [AddComponentMenu("Network/NetworkManagerHUD")]
     [RequireComponent(typeof(NetworkManager))]
     [HelpURL("https://mirror-networking.com/docs/Articles/Components/NetworkManagerHUD.html")]
+=======
+    /// <summary>Shows NetworkManager controls in a GUI at runtime.</summary>
+    [DisallowMultipleComponent]
+    [AddComponentMenu("Network/Network Manager HUD")]
+    [RequireComponent(typeof(NetworkManager))]
+    [HelpURL("https://mirror-networking.gitbook.io/docs/components/network-manager-hud")]
+>>>>>>> Stashed changes
     public class NetworkManagerHUD : MonoBehaviour
     {
         NetworkManager manager;
 
+<<<<<<< Updated upstream
         /// <summary>
         /// Whether to show the default control HUD at runtime.
         /// </summary>
@@ -32,6 +44,9 @@ namespace Mirror
         /// <summary>
         /// The vertical offset in pixels to draw the HUD runtime GUI at.
         /// </summary>
+=======
+        public int offsetX;
+>>>>>>> Stashed changes
         public int offsetY;
 
         void Awake()
@@ -41,10 +56,13 @@ namespace Mirror
 
         void OnGUI()
         {
+<<<<<<< Updated upstream
 #pragma warning disable 618
             if (!showGUI) return;
 #pragma warning restore 618
 
+=======
+>>>>>>> Stashed changes
             GUILayout.BeginArea(new Rect(10 + offsetX, 40 + offsetY, 215, 9999));
             if (!NetworkClient.isConnected && !NetworkServer.active)
             {
@@ -56,6 +74,7 @@ namespace Mirror
             }
 
             // client ready
+<<<<<<< Updated upstream
             if (NetworkClient.isConnected && !ClientScene.ready)
             {
                 if (GUILayout.Button("Client Ready"))
@@ -65,6 +84,16 @@ namespace Mirror
                     if (ClientScene.localPlayer == null)
                     {
                         ClientScene.AddPlayer(NetworkClient.connection);
+=======
+            if (NetworkClient.isConnected && !NetworkClient.ready)
+            {
+                if (GUILayout.Button("Client Ready"))
+                {
+                    NetworkClient.Ready();
+                    if (NetworkClient.localPlayer == null)
+                    {
+                        NetworkClient.AddPlayer();
+>>>>>>> Stashed changes
                     }
                 }
             }
@@ -93,6 +122,10 @@ namespace Mirror
                 {
                     manager.StartClient();
                 }
+<<<<<<< Updated upstream
+=======
+                // This updates networkAddress every frame from the TextField
+>>>>>>> Stashed changes
                 manager.networkAddress = GUILayout.TextField(manager.networkAddress);
                 GUILayout.EndHorizontal();
 
@@ -110,7 +143,11 @@ namespace Mirror
             else
             {
                 // Connecting
+<<<<<<< Updated upstream
                 GUILayout.Label("Connecting to " + manager.networkAddress + "..");
+=======
+                GUILayout.Label($"Connecting to {manager.networkAddress}..");
+>>>>>>> Stashed changes
                 if (GUILayout.Button("Cancel Connection Attempt"))
                 {
                     manager.StopClient();
@@ -120,6 +157,7 @@ namespace Mirror
 
         void StatusLabels()
         {
+<<<<<<< Updated upstream
             // server / client status message
             if (NetworkServer.active)
             {
@@ -128,6 +166,25 @@ namespace Mirror
             if (NetworkClient.isConnected)
             {
                 GUILayout.Label("Client: address=" + manager.networkAddress);
+=======
+            // host mode
+            // display separately because this always confused people:
+            //   Server: ...
+            //   Client: ...
+            if (NetworkServer.active && NetworkClient.active)
+            {
+                GUILayout.Label($"<b>Host</b>: running via {Transport.activeTransport}");
+            }
+            // server only
+            else if (NetworkServer.active)
+            {
+                GUILayout.Label($"<b>Server</b>: running via {Transport.activeTransport}");
+            }
+            // client only
+            else if (NetworkClient.isConnected)
+            {
+                GUILayout.Label($"<b>Client</b>: connected to {manager.networkAddress} via {Transport.activeTransport}");
+>>>>>>> Stashed changes
             }
         }
 

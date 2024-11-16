@@ -203,7 +203,11 @@ namespace Mirror.Examples.MultipleMatch
         /// Sends updated match list to all waiting connections or just one if specified
         /// </summary>
         /// <param name="conn"></param>
+<<<<<<< Updated upstream
         internal void SendMatchList(NetworkConnection conn = null)
+=======
+        internal void SendMatchList(NetworkConnectionToClient conn = null)
+>>>>>>> Stashed changes
         {
             if (!NetworkServer.active) return;
 
@@ -213,7 +217,11 @@ namespace Mirror.Examples.MultipleMatch
             }
             else
             {
+<<<<<<< Updated upstream
                 foreach (var waiter in waitingConnections)
+=======
+                foreach (NetworkConnectionToClient waiter in waitingConnections)
+>>>>>>> Stashed changes
                 {
                     waiter.Send(new ClientMatchMessage { clientMatchOperation = ClientMatchOperation.List, matchInfos = openMatches.Values.ToArray() });
                 }
@@ -234,7 +242,11 @@ namespace Mirror.Examples.MultipleMatch
             NetworkServer.RegisterHandler<ServerMatchMessage>(OnServerMatchMessage);
         }
 
+<<<<<<< Updated upstream
         internal void OnServerReady(NetworkConnection conn)
+=======
+        internal void OnServerReady(NetworkConnectionToClient conn)
+>>>>>>> Stashed changes
         {
             if (!NetworkServer.active) return;
 
@@ -245,7 +257,11 @@ namespace Mirror.Examples.MultipleMatch
             SendMatchList();
         }
 
+<<<<<<< Updated upstream
         internal void OnServerDisconnect(NetworkConnection conn)
+=======
+        internal void OnServerDisconnect(NetworkConnectionToClient conn)
+>>>>>>> Stashed changes
         {
             if (!NetworkServer.active) return;
 
@@ -268,7 +284,11 @@ namespace Mirror.Examples.MultipleMatch
                 }
             }
 
+<<<<<<< Updated upstream
             foreach (KeyValuePair<Guid, HashSet<NetworkConnection>> kvp in matchConnections)
+=======
+            foreach (KeyValuePair<Guid, HashSet<NetworkConnectionToClient>> kvp in matchConnections)
+>>>>>>> Stashed changes
             {
                 kvp.Value.Remove(conn);
             }
@@ -288,7 +308,11 @@ namespace Mirror.Examples.MultipleMatch
                 {
                     PlayerInfo[] infos = connections.Select(playerConn => playerInfos[playerConn]).ToArray();
 
+<<<<<<< Updated upstream
                     foreach (NetworkConnection playerConn in matchConnections[playerInfo.matchId])
+=======
+                    foreach (NetworkConnectionToClient playerConn in matchConnections[playerInfo.matchId])
+>>>>>>> Stashed changes
                     {
                         if (playerConn != conn)
                         {
@@ -306,7 +330,11 @@ namespace Mirror.Examples.MultipleMatch
             ResetCanvas();
         }
 
+<<<<<<< Updated upstream
         internal void OnClientConnect(NetworkConnection conn)
+=======
+        internal void OnClientConnect()
+>>>>>>> Stashed changes
         {
             playerInfos.Add(conn, new PlayerInfo { playerIndex = this.playerIndex, ready = false });
         }
@@ -338,7 +366,11 @@ namespace Mirror.Examples.MultipleMatch
 
         #region Server Match Message Handlers
 
+<<<<<<< Updated upstream
         void OnServerMatchMessage(NetworkConnection conn, ServerMatchMessage msg)
+=======
+        void OnServerMatchMessage(NetworkConnectionToClient conn, ServerMatchMessage msg)
+>>>>>>> Stashed changes
         {
             if (!NetworkServer.active) return;
 
@@ -382,6 +414,7 @@ namespace Mirror.Examples.MultipleMatch
             }
         }
 
+<<<<<<< Updated upstream
         void OnServerPlayerReady(NetworkConnection conn, Guid matchId)
         {
             if (!NetworkServer.active) return;
@@ -432,6 +465,58 @@ namespace Mirror.Examples.MultipleMatch
 
         void OnServerCreateMatch(NetworkConnection conn)
         {
+=======
+        void OnServerPlayerReady(NetworkConnectionToClient conn, Guid matchId)
+        {
+            if (!NetworkServer.active) return;
+
+            PlayerInfo playerInfo = playerInfos[conn];
+            playerInfo.ready = !playerInfo.ready;
+            playerInfos[conn] = playerInfo;
+
+            HashSet<NetworkConnectionToClient> connections = matchConnections[matchId];
+            PlayerInfo[] infos = connections.Select(playerConn => playerInfos[playerConn]).ToArray();
+
+            foreach (NetworkConnectionToClient playerConn in matchConnections[matchId])
+            {
+                playerConn.Send(new ClientMatchMessage { clientMatchOperation = ClientMatchOperation.UpdateRoom, playerInfos = infos });
+            }
+        }
+
+        void OnServerLeaveMatch(NetworkConnectionToClient conn, Guid matchId)
+        {
+            if (!NetworkServer.active) return;
+
+            MatchInfo matchInfo = openMatches[matchId];
+            matchInfo.players--;
+            openMatches[matchId] = matchInfo;
+
+            PlayerInfo playerInfo = playerInfos[conn];
+            playerInfo.ready = false;
+            playerInfo.matchId = Guid.Empty;
+            playerInfos[conn] = playerInfo;
+
+            foreach (KeyValuePair<Guid, HashSet<NetworkConnectionToClient>> kvp in matchConnections)
+            {
+                kvp.Value.Remove(conn);
+            }
+
+            HashSet<NetworkConnectionToClient> connections = matchConnections[matchId];
+            PlayerInfo[] infos = connections.Select(playerConn => playerInfos[playerConn]).ToArray();
+
+            foreach (NetworkConnectionToClient playerConn in matchConnections[matchId])
+            {
+                playerConn.Send(new ClientMatchMessage { clientMatchOperation = ClientMatchOperation.UpdateRoom, playerInfos = infos });
+            }
+
+            SendMatchList();
+
+            conn.Send(new ClientMatchMessage { clientMatchOperation = ClientMatchOperation.Departed });
+        }
+
+        void OnServerCreateMatch(NetworkConnectionToClient conn)
+        {
+>>>>>>> Stashed changes
             if (!NetworkServer.active || playerMatches.ContainsKey(conn)) return;
 
             Guid newMatchId = Guid.NewGuid();
@@ -452,7 +537,11 @@ namespace Mirror.Examples.MultipleMatch
             SendMatchList();
         }
 
+<<<<<<< Updated upstream
         void OnServerCancelMatch(NetworkConnection conn)
+=======
+        void OnServerCancelMatch(NetworkConnectionToClient conn)
+>>>>>>> Stashed changes
         {
             if (!NetworkServer.active || !playerMatches.ContainsKey(conn)) return;
 
@@ -477,7 +566,11 @@ namespace Mirror.Examples.MultipleMatch
             }
         }
 
+<<<<<<< Updated upstream
         void OnServerStartMatch(NetworkConnection conn)
+=======
+        void OnServerStartMatch(NetworkConnectionToClient conn)
+>>>>>>> Stashed changes
         {
             if (!NetworkServer.active || !playerMatches.ContainsKey(conn)) return;
 
@@ -529,7 +622,11 @@ namespace Mirror.Examples.MultipleMatch
             }
         }
 
+<<<<<<< Updated upstream
         void OnServerJoinMatch(NetworkConnection conn, Guid matchId)
+=======
+        void OnServerJoinMatch(NetworkConnectionToClient conn, Guid matchId)
+>>>>>>> Stashed changes
         {
             if (!NetworkServer.active || !matchConnections.ContainsKey(matchId) || !openMatches.ContainsKey(matchId)) return;
 
@@ -548,7 +645,11 @@ namespace Mirror.Examples.MultipleMatch
 
             conn.Send(new ClientMatchMessage { clientMatchOperation = ClientMatchOperation.Joined, matchId = matchId, playerInfos = infos });
 
+<<<<<<< Updated upstream
             foreach (NetworkConnection playerConn in matchConnections[matchId])
+=======
+            foreach (NetworkConnectionToClient playerConn in matchConnections[matchId])
+>>>>>>> Stashed changes
             {
                 playerConn.Send(new ClientMatchMessage { clientMatchOperation = ClientMatchOperation.UpdateRoom, playerInfos = infos });
             }
@@ -558,7 +659,11 @@ namespace Mirror.Examples.MultipleMatch
 
         #region Client Match Message Handler
 
+<<<<<<< Updated upstream
         void OnClientMatchMessage(NetworkConnection conn, ClientMatchMessage msg)
+=======
+        void OnClientMatchMessage(ClientMatchMessage msg)
+>>>>>>> Stashed changes
         {
             if (!NetworkClient.active) return;
 

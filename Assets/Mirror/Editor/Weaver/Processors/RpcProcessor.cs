@@ -10,10 +10,17 @@ namespace Mirror.Weaver
     {
         public static MethodDefinition ProcessRpcInvoke(TypeDefinition td, MethodDefinition md, MethodDefinition rpcCallFunc)
         {
+<<<<<<< Updated upstream
             MethodDefinition rpc = new MethodDefinition(
                 Weaver.InvokeRpcPrefix + md.Name,
                 MethodAttributes.Family | MethodAttributes.Static | MethodAttributes.HideBySig,
                 WeaverTypes.Import(typeof(void)));
+=======
+            string rpcName = Weaver.GenerateMethodName(Weaver.InvokeRpcPrefix, md);
+
+            MethodDefinition rpc = new MethodDefinition(rpcName, MethodAttributes.Family | MethodAttributes.Static | MethodAttributes.HideBySig,
+                                                        weaverTypes.Import(typeof(void)));
+>>>>>>> Stashed changes
 
             ILProcessor worker = rpc.Body.GetILProcessor();
             Instruction label = worker.Create(OpCodes.Nop);
@@ -85,10 +92,15 @@ namespace Mirror.Weaver
             // invoke SendInternal and return
             // this
             worker.Emit(OpCodes.Ldarg_0);
+<<<<<<< Updated upstream
             worker.Emit(OpCodes.Ldtoken, td);
             // invokerClass
             worker.Emit(OpCodes.Call, WeaverTypes.getTypeFromHandleReference);
             worker.Emit(OpCodes.Ldstr, rpcName);
+=======
+            // pass full function name to avoid ClassA.Func <-> ClassB.Func collisions
+            worker.Emit(OpCodes.Ldstr, md.FullName);
+>>>>>>> Stashed changes
             // writer
             worker.Emit(OpCodes.Ldloc_0);
             worker.Emit(OpCodes.Ldc_I4, channel);

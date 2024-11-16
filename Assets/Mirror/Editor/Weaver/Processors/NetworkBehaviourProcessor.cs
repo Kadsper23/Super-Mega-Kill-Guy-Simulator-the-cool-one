@@ -69,7 +69,11 @@ namespace Mirror.Weaver
             MarkAsProcessed(netBehaviourSubclass);
 
             // deconstruct tuple and set fields
+<<<<<<< Updated upstream
             (syncVars, syncVarNetIds) = SyncVarProcessor.ProcessSyncVars(netBehaviourSubclass);
+=======
+            (syncVars, syncVarNetIds) = syncVarAttributeProcessor.ProcessSyncVars(netBehaviourSubclass, ref WeavingFailed);
+>>>>>>> Stashed changes
 
             syncObjects = SyncObjectProcessor.FindSyncObjectsFields(netBehaviourSubclass);
 
@@ -208,11 +212,19 @@ namespace Mirror.Weaver
             return td.GetMethod(ProcessedFunctionName) != null;
         }
 
+<<<<<<< Updated upstream
         public static void MarkAsProcessed(TypeDefinition td)
         {
             if (!WasProcessed(td))
             {
                 MethodDefinition versionMethod = new MethodDefinition(ProcessedFunctionName, MethodAttributes.Private, WeaverTypes.Import(typeof(void)));
+=======
+        public void MarkAsProcessed(TypeDefinition td)
+        {
+            if (!WasProcessed(td))
+            {
+                MethodDefinition versionMethod = new MethodDefinition(ProcessedFunctionName, MethodAttributes.Private, weaverTypes.Import(typeof(void)));
+>>>>>>> Stashed changes
                 ILProcessor worker = versionMethod.Body.GetILProcessor();
                 worker.Emit(OpCodes.Ret);
                 td.Methods.Add(versionMethod);
@@ -317,6 +329,44 @@ namespace Mirror.Weaver
             netBehaviourSubclass.Attributes &= ~TypeAttributes.BeforeFieldInit;
         }
 
+<<<<<<< Updated upstream
+=======
+        // we need to inject several initializations into NetworkBehaviour ctor
+        void InjectIntoInstanceConstructor(ref bool WeavingFailed)
+        {
+            if (syncObjects.Count == 0)
+                return;
+
+            // find instance constructor
+            MethodDefinition ctor = netBehaviourSubclass.GetMethod(".ctor");
+            if (ctor == null)
+            {
+                Log.Error($"{netBehaviourSubclass.Name} has invalid constructor", netBehaviourSubclass);
+                WeavingFailed = true;
+                return;
+            }
+
+            // remove the return opcode from end of function. will add our own later.
+            if (!RemoveFinalRetInstruction(ctor))
+            {
+                Log.Error($"{netBehaviourSubclass.Name} has invalid constructor", ctor);
+                WeavingFailed = true;
+                return;
+            }
+
+            ILProcessor ctorWorker = ctor.Body.GetILProcessor();
+
+            // initialize all sync objects in ctor
+            foreach (FieldDefinition fd in syncObjects)
+            {
+                SyncObjectInitializer.GenerateSyncObjectInitializer(ctorWorker, weaverTypes, fd);
+            }
+
+            // add final 'Ret' instruction to ctor
+            ctorWorker.Append(ctorWorker.Create(OpCodes.Ret));
+        }
+
+>>>>>>> Stashed changes
         /*
             // This generates code like:
             NetworkBehaviour.RegisterCommandDelegate(base.GetType(), "CmdThrust", new NetworkBehaviour.CmdDelegate(ShipControl.InvokeCmdCmdThrust));
@@ -369,7 +419,11 @@ namespace Mirror.Weaver
 
             MethodDefinition serialize = new MethodDefinition(SerializeMethodName,
                     MethodAttributes.Public | MethodAttributes.Virtual | MethodAttributes.HideBySig,
+<<<<<<< Updated upstream
                     WeaverTypes.Import<bool>());
+=======
+                    weaverTypes.Import<bool>());
+>>>>>>> Stashed changes
 
             serialize.Parameters.Add(new ParameterDefinition("writer", ParameterAttributes.None, WeaverTypes.Import<NetworkWriter>()));
             serialize.Parameters.Add(new ParameterDefinition("forceAll", ParameterAttributes.None, WeaverTypes.Import<bool>()));
@@ -378,10 +432,17 @@ namespace Mirror.Weaver
             serialize.Body.InitLocals = true;
 
             // loc_0,  this local variable is to determine if any variable was dirty
+<<<<<<< Updated upstream
             VariableDefinition dirtyLocal = new VariableDefinition(WeaverTypes.Import<bool>());
             serialize.Body.Variables.Add(dirtyLocal);
 
             MethodReference baseSerialize = Resolvers.TryResolveMethodInParents(netBehaviourSubclass.BaseType, Weaver.CurrentAssembly, SerializeMethodName);
+=======
+            VariableDefinition dirtyLocal = new VariableDefinition(weaverTypes.Import<bool>());
+            serialize.Body.Variables.Add(dirtyLocal);
+
+            MethodReference baseSerialize = Resolvers.TryResolveMethodInParents(netBehaviourSubclass.BaseType, assembly, SerializeMethodName);
+>>>>>>> Stashed changes
             if (baseSerialize != null)
             {
                 // base
@@ -401,7 +462,11 @@ namespace Mirror.Weaver
             worker.Emit(OpCodes.Ldarg_2);
             worker.Emit(OpCodes.Brfalse, initialStateLabel);
 
+<<<<<<< Updated upstream
             foreach (FieldDefinition syncVar in syncVars)
+=======
+            foreach (FieldDefinition syncVarDef in syncVars)
+>>>>>>> Stashed changes
             {
                 // Generates a writer call for each sync variable
                 // writer
@@ -409,7 +474,11 @@ namespace Mirror.Weaver
                 // this
                 worker.Emit(OpCodes.Ldarg_0);
                 worker.Emit(OpCodes.Ldfld, syncVar);
+<<<<<<< Updated upstream
                 MethodReference writeFunc = Writers.GetWriteFunc(syncVar.FieldType);
+=======
+                MethodReference writeFunc = writers.GetWriteFunc(syncVar.FieldType, ref WeavingFailed);
+>>>>>>> Stashed changes
                 if (writeFunc != null)
                 {
                     worker.Emit(OpCodes.Call, writeFunc);
@@ -436,8 +505,13 @@ namespace Mirror.Weaver
             worker.Emit(OpCodes.Ldarg_1);
             // base
             worker.Emit(OpCodes.Ldarg_0);
+<<<<<<< Updated upstream
             worker.Emit(OpCodes.Call, WeaverTypes.NetworkBehaviourDirtyBitsReference);
             MethodReference writeUint64Func = Writers.GetWriteFunc(WeaverTypes.Import<ulong>());
+=======
+            worker.Emit(OpCodes.Call, weaverTypes.NetworkBehaviourDirtyBitsReference);
+            MethodReference writeUint64Func = writers.GetWriteFunc(weaverTypes.Import<ulong>(), ref WeavingFailed);
+>>>>>>> Stashed changes
             worker.Emit(OpCodes.Call, writeUint64Func);
 
             // generate a writer call for any dirty variable in this class
@@ -446,12 +520,25 @@ namespace Mirror.Weaver
             int dirtyBit = Weaver.WeaveLists.GetSyncVarStart(netBehaviourSubclass.BaseType.FullName);
             foreach (FieldDefinition syncVar in syncVars)
             {
+<<<<<<< Updated upstream
+=======
+
+                FieldReference syncVar = syncVarDef;
+                if (netBehaviourSubclass.HasGenericParameters)
+                {
+                    syncVar = syncVarDef.MakeHostInstanceGeneric();
+                }
+>>>>>>> Stashed changes
                 Instruction varLabel = worker.Create(OpCodes.Nop);
 
                 // Generates: if ((base.get_syncVarDirtyBits() & 1uL) != 0uL)
                 // base
                 worker.Emit(OpCodes.Ldarg_0);
+<<<<<<< Updated upstream
                 worker.Emit(OpCodes.Call, WeaverTypes.NetworkBehaviourDirtyBitsReference);
+=======
+                worker.Emit(OpCodes.Call, weaverTypes.NetworkBehaviourDirtyBitsReference);
+>>>>>>> Stashed changes
                 // 8 bytes = long
                 worker.Emit(OpCodes.Ldc_I8, 1L << dirtyBit);
                 worker.Emit(OpCodes.And);
@@ -464,7 +551,11 @@ namespace Mirror.Weaver
                 worker.Emit(OpCodes.Ldarg_0);
                 worker.Emit(OpCodes.Ldfld, syncVar);
 
+<<<<<<< Updated upstream
                 MethodReference writeFunc = Writers.GetWriteFunc(syncVar.FieldType);
+=======
+                MethodReference writeFunc = writers.GetWriteFunc(syncVar.FieldType, ref WeavingFailed);
+>>>>>>> Stashed changes
                 if (writeFunc != null)
                 {
                     worker.Emit(OpCodes.Call, writeFunc);
@@ -511,7 +602,88 @@ namespace Mirror.Weaver
             }
             else
             {
+<<<<<<< Updated upstream
                 DeserializeNormalField(syncVar, worker, deserialize, hookMethod);
+=======
+                worker.Emit(OpCodes.Ldflda, syncVar);
+            }
+
+            // hook? then push 'new Action<T,T>(Hook)' onto stack
+            MethodDefinition hookMethod = syncVarAttributeProcessor.GetHookMethod(netBehaviourSubclass, syncVar, ref WeavingFailed);
+            if (hookMethod != null)
+            {
+                syncVarAttributeProcessor.GenerateNewActionFromHookMethod(syncVar, worker, hookMethod);
+            }
+            // otherwise push 'null' as hook
+            else
+            {
+                worker.Emit(OpCodes.Ldnull);
+            }
+
+            // call GeneratedSyncVarDeserialize<T>.
+            // special cases for GameObject/NetworkIdentity/NetworkBehaviour
+            // passing netId too for persistence.
+            if (syncVar.FieldType.Is<UnityEngine.GameObject>())
+            {
+                // reader
+                worker.Emit(OpCodes.Ldarg_1);
+
+                // GameObject setter needs one more parameter: netId field ref
+                FieldDefinition netIdField = syncVarNetIds[syncVar];
+                worker.Emit(OpCodes.Ldarg_0);
+                worker.Emit(OpCodes.Ldflda, netIdField);
+                worker.Emit(OpCodes.Call, weaverTypes.generatedSyncVarDeserialize_GameObject);
+            }
+            else if (syncVar.FieldType.Is<NetworkIdentity>())
+            {
+                // reader
+                worker.Emit(OpCodes.Ldarg_1);
+
+                // NetworkIdentity deserialize needs one more parameter: netId field ref
+                FieldDefinition netIdField = syncVarNetIds[syncVar];
+                worker.Emit(OpCodes.Ldarg_0);
+                worker.Emit(OpCodes.Ldflda, netIdField);
+                worker.Emit(OpCodes.Call, weaverTypes.generatedSyncVarDeserialize_NetworkIdentity);
+            }
+            // TODO this only uses the persistent netId for types DERIVED FROM NB.
+            //      not if the type is just 'NetworkBehaviour'.
+            //      this is what original implementation did too. fix it after.
+            else if (syncVar.FieldType.IsDerivedFrom<NetworkBehaviour>())
+            {
+                // reader
+                worker.Emit(OpCodes.Ldarg_1);
+
+                // NetworkIdentity deserialize needs one more parameter: netId field ref
+                // (actually its a NetworkBehaviourSyncVar type)
+                FieldDefinition netIdField = syncVarNetIds[syncVar];
+                worker.Emit(OpCodes.Ldarg_0);
+                worker.Emit(OpCodes.Ldflda, netIdField);
+                // make generic version of GeneratedSyncVarSetter_NetworkBehaviour<T>
+                MethodReference getFunc = weaverTypes.generatedSyncVarDeserialize_NetworkBehaviour_T.MakeGeneric(assembly.MainModule, syncVar.FieldType);
+                worker.Emit(OpCodes.Call, getFunc);
+            }
+            else
+            {
+                // T value = reader.ReadT();
+                // this is still in IL because otherwise weaver generated
+                // readers/writers don't seem to work in tests.
+                // besides, this also avoids reader.Read<T> overhead.
+                MethodReference readFunc = readers.GetReadFunc(syncVar.FieldType, ref WeavingFailed);
+                if (readFunc == null)
+                {
+                    Log.Error($"{syncVar.Name} has unsupported type. Use a supported Mirror type instead", syncVar);
+                    WeavingFailed = true;
+                    return;
+                }
+                // reader. for 'reader.Read()' below
+                worker.Emit(OpCodes.Ldarg_1);
+                // reader.Read()
+                worker.Emit(OpCodes.Call, readFunc);
+
+                // make generic version of GeneratedSyncVarDeserialize<T>
+                MethodReference generic = weaverTypes.generatedSyncVarDeserialize.MakeGeneric(assembly.MainModule, syncVar.FieldType);
+                worker.Emit(OpCodes.Call, generic);
+>>>>>>> Stashed changes
             }
         }
 

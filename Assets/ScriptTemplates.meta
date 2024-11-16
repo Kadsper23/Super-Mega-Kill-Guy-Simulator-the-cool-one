@@ -1,8 +1,16 @@
 fileFormatVersion: 2
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 guid: 9b7bf7d53b15ed345be6fd123298d8c4
 =======
 guid: 6a2f9a0a5a84db2498a8a53d7b1b24dc
+>>>>>>> Stashed changes
+=======
+<<<<<<<< Updated upstream:Assets/Sprites/Editor/Weaver.meta
+guid: aa7b6a3e81acc044aacbc44fc0803b69
+========
+guid: 9b7bf7d53b15ed345be6fd123298d8c4
+>>>>>>>> Stashed changes:Assets/ScriptTemplates.meta
 >>>>>>> Stashed changes
 folderAsset: yes
 DefaultImporter:

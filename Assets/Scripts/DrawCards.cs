@@ -6,6 +6,7 @@ using UnityEngine;
 public class DrawCards : NetworkBehaviour
 {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     public GameObject Card1;
     public GameObject Card2;
     public GameObject PlayerArea;
@@ -43,4 +44,15 @@ public class DrawCards : NetworkBehaviour
         PlayerManager.CmdDealCards();
 >>>>>>> Stashed changes
     }
+=======
+    public PlayerManager PlayerManager;
+
+    public void OnClick()
+    {
+        NetworkIdentity networkIdentity = NetworkClient.connection.identity;
+        PlayerManager = networkIdentity.GetComponent<PlayerManager>();
+        PlayerManager.CmdDealCards();
+    }
+
+>>>>>>> Stashed changes
 }

@@ -29,6 +29,14 @@ namespace Mirror
             internal TValue item;
         }
 
+<<<<<<< Updated upstream
+=======
+        // list of changes.
+        // -> insert/delete/clear is only ONE change
+        // -> changing the same slot 10x caues 10 changes.
+        // -> note that this grows until next sync(!)
+        // TODO Dictionary<key, change> to avoid ever growing changes / redundant changes!
+>>>>>>> Stashed changes
         readonly List<Change> changes = new List<Change>();
         // how many changes we need to ignore
         // this is needed because when we initialize the list,
@@ -36,7 +44,11 @@ namespace Mirror
         // so we need to skip them
         int changesAhead;
 
+<<<<<<< Updated upstream
         public void Reset()
+=======
+        public override void Reset()
+>>>>>>> Stashed changes
         {
             IsReadOnly = false;
             changes.Clear();
@@ -44,8 +56,11 @@ namespace Mirror
             objects.Clear();
         }
 
+<<<<<<< Updated upstream
         public bool IsDirty => changes.Count > 0;
 
+=======
+>>>>>>> Stashed changes
         public ICollection<TKey> Keys => objects.Keys;
 
         public ICollection<TValue> Values => objects.Values;
@@ -56,9 +71,43 @@ namespace Mirror
 
         // throw away all the changes
         // this should be called after a successful sync
+<<<<<<< Updated upstream
         public void Flush() => changes.Clear();
 
         public SyncIDictionary(IDictionary<TKey, TValue> objects)
+=======
+        public override void ClearChanges() => changes.Clear();
+
+        public SyncIDictionary(IDictionary<TKey, TValue> objects)
+        {
+            this.objects = objects;
+        }
+
+        void AddOperation(Operation op, TKey key, TValue item)
+        {
+            if (IsReadOnly)
+            {
+                throw new System.InvalidOperationException("SyncDictionaries can only be modified by the server");
+            }
+
+            Change change = new Change
+            {
+                operation = op,
+                key = key,
+                item = item
+            };
+
+            if (IsRecording())
+            {
+                changes.Add(change);
+                OnDirty?.Invoke();
+            }
+
+            Callback?.Invoke(op, key, item);
+        }
+
+        public override void OnSerializeAll(NetworkWriter writer)
+>>>>>>> Stashed changes
         {
             this.objects = objects;
         }
@@ -153,7 +202,11 @@ namespace Mirror
             // This list can now only be modified by synchronization
             IsReadOnly = true;
 
+<<<<<<< Updated upstream
             int changesCount = (int)reader.ReadUInt32();
+=======
+            int changesCount = (int)reader.ReadUInt();
+>>>>>>> Stashed changes
 
             for (int i = 0; i < changesCount; i++)
             {
@@ -251,6 +304,14 @@ namespace Mirror
         }
 
         public void Add(KeyValuePair<TKey, TValue> item) => Add(item.Key, item.Value);
+<<<<<<< Updated upstream
+=======
+
+        public bool Contains(KeyValuePair<TKey, TValue> item)
+        {
+            return TryGetValue(item.Key, out TValue val) && EqualityComparer<TValue>.Default.Equals(val, item.Value);
+        }
+>>>>>>> Stashed changes
 
         public bool Contains(KeyValuePair<TKey, TValue> item)
         {
@@ -295,6 +356,10 @@ namespace Mirror
     {
         public SyncDictionary() : base(new Dictionary<TKey, TValue>()) {}
         public SyncDictionary(IEqualityComparer<TKey> eq) : base(new Dictionary<TKey, TValue>(eq)) {}
+<<<<<<< Updated upstream
+=======
+        public SyncDictionary(IDictionary<TKey, TValue> d) : base(new Dictionary<TKey, TValue>(d)) {}
+>>>>>>> Stashed changes
         public new Dictionary<TKey, TValue>.ValueCollection Values => ((Dictionary<TKey, TValue>)objects).Values;
         public new Dictionary<TKey, TValue>.KeyCollection Keys => ((Dictionary<TKey, TValue>)objects).Keys;
         public new Dictionary<TKey, TValue>.Enumerator GetEnumerator() => ((Dictionary<TKey, TValue>)objects).GetEnumerator();

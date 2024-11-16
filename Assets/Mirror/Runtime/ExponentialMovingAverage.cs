@@ -8,8 +8,13 @@ namespace Mirror
         readonly float alpha;
         bool initialized;
 
+<<<<<<< Updated upstream
         public double Value { get; private set; }
         public double Var { get; private set; }
+=======
+        public double Value;
+        public double Var;
+>>>>>>> Stashed changes
 
         public ExponentialMovingAverage(int n)
         {

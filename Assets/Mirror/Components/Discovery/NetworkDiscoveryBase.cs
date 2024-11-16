@@ -32,6 +32,10 @@ namespace Mirror.Discovery
         protected int serverBroadcastListenPort = 47777;
 
         [SerializeField]
+        [Tooltip("If true, broadcasts a discovery request every ActiveDiscoveryInterval seconds")]
+        public bool enableActiveDiscovery = true;
+
+        [SerializeField]
         [Tooltip("Time in seconds between multi-cast messages")]
         [Range(1, 60)]
         float ActiveDiscoveryInterval = 3;
@@ -219,7 +223,46 @@ namespace Mirror.Discovery
         /// <returns>The message to be sent back to the client or null</returns>
         protected abstract Response ProcessRequest(Request request, IPEndPoint endpoint);
 
+<<<<<<< Updated upstream
         #endregion
+=======
+        // Android Multicast fix: https://github.com/vis2k/Mirror/pull/2887
+#if UNITY_ANDROID
+        AndroidJavaObject multicastLock;
+        bool hasMulticastLock;
+#endif
+        void BeginMulticastLock()
+		{
+#if UNITY_ANDROID
+            if (hasMulticastLock) return;
+                
+            if (Application.platform == RuntimePlatform.Android)
+            {
+                using (AndroidJavaObject activity = new AndroidJavaClass("com.unity3d.player.UnityPlayer").GetStatic<AndroidJavaObject>("currentActivity"))
+                {
+                    using (var wifiManager = activity.Call<AndroidJavaObject>("getSystemService", "wifi"))
+                    {
+                        multicastLock = wifiManager.Call<AndroidJavaObject>("createMulticastLock", "lock");
+                        multicastLock.Call("acquire");
+                        hasMulticastLock = true;
+                    }
+                }
+			}
+#endif
+        }
+
+        void EndpMulticastLock()
+        {
+#if UNITY_ANDROID
+            if (!hasMulticastLock) return;
+            
+            multicastLock?.Call("release");
+            hasMulticastLock = false;
+#endif
+        }
+
+#endregion
+>>>>>>> Stashed changes
 
         #region Client
 
@@ -268,7 +311,22 @@ namespace Mirror.Discovery
         /// <returns>ClientListenAsync Task</returns>
         public async Task ClientListenAsync()
         {
+<<<<<<< Updated upstream
             while (true)
+=======
+            // while clientUpdClient to fix: 
+            // https://github.com/vis2k/Mirror/pull/2908
+            //
+            // If, you cancel discovery the clientUdpClient is set to null.
+            // However, nothing cancels ClientListenAsync. If we change the if(true)
+            // to check if the client is null. You can properly cancel the discovery, 
+            // and kill the listen thread.
+            //
+            // Prior to this fix, if you cancel the discovery search. It crashes the 
+            // thread, and is super noisy in the output. As well as causes issues on 
+            // the quest.
+            while (clientUdpClient != null)
+>>>>>>> Stashed changes
             {
                 try
                 {
@@ -296,9 +354,15 @@ namespace Mirror.Discovery
 
             IPEndPoint endPoint = new IPEndPoint(IPAddress.Broadcast, serverBroadcastListenPort);
 
+<<<<<<< Updated upstream
             using (PooledNetworkWriter writer = NetworkWriterPool.GetWriter())
             {
                 writer.WriteInt64(secretHandshake);
+=======
+            using (NetworkWriterPooled writer = NetworkWriterPool.Get())
+            {
+                writer.WriteLong(secretHandshake);
+>>>>>>> Stashed changes
 
                 try
                 {

@@ -1,5 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+<<<<<<< Updated upstream
+=======
+using UnityEngine.Experimental;
+>>>>>>> Stashed changes
 using UnityEngine;
 using Mirror;
 
@@ -30,6 +34,10 @@ public class PlayerManager : NetworkBehaviour
         cards.Add(Card1);
         cards.Add(Card2);
         Debug.Log(cards);
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
     }
 
     [Command]
@@ -43,12 +51,20 @@ public class PlayerManager : NetworkBehaviour
         }
     }
 
+<<<<<<< Updated upstream
  [ClientRpc]
+=======
+    [ClientRpc]
+>>>>>>> Stashed changes
     void RpcShowCard(GameObject card, string type)
     {
         if (type == "Dealt")
         {
+<<<<<<< Updated upstream
             if (isOwned)
+=======
+            if (hasAuthority)
+>>>>>>> Stashed changes
             {
                 card.transform.SetParent(PlayerArea.transform, false);
             }
@@ -56,7 +72,12 @@ public class PlayerManager : NetworkBehaviour
             {
                 card.transform.SetParent(EnemyArea.transform, false);
             }
+<<<<<<< Updated upstream
         } else if (type == "Played")
+=======
+        }
+        else if (type == "Played")
+>>>>>>> Stashed changes
         {
 
         }

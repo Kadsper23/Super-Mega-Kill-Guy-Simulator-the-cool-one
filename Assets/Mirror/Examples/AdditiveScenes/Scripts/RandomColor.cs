@@ -1,6 +1,11 @@
 using UnityEngine;
 
+<<<<<<< Updated upstream
+<<<<<<<< Updated upstream:Assets/Mirror/Examples/AdditiveScenes/Scripts/RandomColor.cs
 namespace Mirror.Examples.Additive
+=======
+namespace Mirror.Examples.AdditiveScenes
+>>>>>>> Stashed changes
 {
     public class RandomColor : NetworkBehaviour
     {
@@ -10,6 +15,15 @@ namespace Mirror.Examples.Additive
             color = Random.ColorHSV(0f, 1f, 1f, 1f, 0.5f, 1f);
         }
 
+<<<<<<< Updated upstream
+========
+namespace Mirror.Examples.AdditiveLevels
+{
+    public class RandomColor : NetworkBehaviour
+    {
+>>>>>>>> Stashed changes:Assets/Mirror/Examples/AdditiveLevels/Scripts/RandomColor.cs
+=======
+>>>>>>> Stashed changes
         // Color32 packs to 4 bytes
         [SyncVar(hook = nameof(SetColor))]
         public Color32 color = Color.black;
@@ -28,5 +42,18 @@ namespace Mirror.Examples.Additive
         {
             Destroy(cachedMaterial);
         }
+<<<<<<< Updated upstream
+
+        public override void OnStartServer()
+        {
+            base.OnStartServer();
+
+            // This script is on players that are respawned repeatedly
+            // so once the color has been set, don't change it.
+            if (color == Color.black)
+                color = Random.ColorHSV(0f, 1f, 1f, 1f, 0.5f, 1f);
+        }
+=======
+>>>>>>> Stashed changes
     }
 }

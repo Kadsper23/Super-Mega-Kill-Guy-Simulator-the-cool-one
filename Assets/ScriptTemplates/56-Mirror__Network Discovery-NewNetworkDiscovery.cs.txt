@@ -3,8 +3,12 @@ using Mirror;
 using Mirror.Discovery;
 
 /*
+<<<<<<< Updated upstream
 	Discovery Guide: https://mirror-networking.com/docs/Guides/NetworkDiscovery.html
     Documentation: https://mirror-networking.com/docs/Components/NetworkDiscovery.html
+=======
+    Documentation: https://mirror-networking.gitbook.io/docs/components/network-discovery
+>>>>>>> Stashed changes
     API Reference: https://mirror-networking.com/docs/api/Mirror.Discovery.NetworkDiscovery.html
 */
 

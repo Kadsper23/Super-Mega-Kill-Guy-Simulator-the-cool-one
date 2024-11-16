@@ -5,7 +5,11 @@ MonoImporter:
   serializedVersion: 2
   defaultReferences: []
   executionOrder: 0
+<<<<<<< Updated upstream:Assets/Mirror/Components/Experimental/NetworkTransform.cs.meta
   icon: {fileID: 2800000, guid: 7453abfe9e8b2c04a8a47eb536fe21eb, type: 3}
+=======
+  icon: {instanceID: 0}
+>>>>>>> Stashed changes:Assets/Mirror/Components/Discovery/ServerRequest.cs.meta
   userData: ''
   assetBundleName: ''
   assetBundleVariant: ''

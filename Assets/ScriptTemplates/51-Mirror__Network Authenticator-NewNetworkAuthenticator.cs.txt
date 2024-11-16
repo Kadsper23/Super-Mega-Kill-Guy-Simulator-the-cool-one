@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Mirror;
@@ -5,6 +6,16 @@ using Mirror;
 /*
     Authenticators: https://mirror-networking.com/docs/Components/Authenticators/
     Documentation: https://mirror-networking.com/docs/Guides/Authentication.html
+=======
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using Mirror;
+using UnityEngine;
+
+/*
+    Documentation: https://mirror-networking.gitbook.io/docs/components/network-authenticators
+>>>>>>> Stashed changes
     API Reference: https://mirror-networking.com/docs/api/Mirror.NetworkAuthenticator.html
 */
 
@@ -31,17 +42,28 @@ public class #SCRIPTNAME# : NetworkAuthenticator
     }
 
     /// <summary>
+<<<<<<< Updated upstream
     /// Called on server from OnServerAuthenticateInternal when a client needs to authenticate
     /// </summary>
     /// <param name="conn">Connection to client.</param>
     public override void OnServerAuthenticate(NetworkConnection conn) { }
+=======
+    /// Called on server from OnServerConnectInternal when a client needs to authenticate
+    /// </summary>
+    /// <param name="conn">Connection to client.</param>
+    public override void OnServerAuthenticate(NetworkConnectionToClient conn) { }
+>>>>>>> Stashed changes
 
     /// <summary>
     /// Called on server when the client's AuthRequestMessage arrives
     /// </summary>
     /// <param name="conn">Connection to client.</param>
     /// <param name="msg">The message payload</param>
+<<<<<<< Updated upstream
     public void OnAuthRequestMessage(NetworkConnection conn, AuthRequestMessage msg)
+=======
+    public void OnAuthRequestMessage(NetworkConnectionToClient conn, AuthRequestMessage msg)
+>>>>>>> Stashed changes
     {
         AuthResponseMessage authResponseMessage = new AuthResponseMessage();
 
@@ -66,10 +88,16 @@ public class #SCRIPTNAME# : NetworkAuthenticator
     }
 
     /// <summary>
+<<<<<<< Updated upstream
     /// Called on client from OnClientAuthenticateInternal when a client needs to authenticate
     /// </summary>
     /// <param name="conn">Connection of the client.</param>
     public override void OnClientAuthenticate(NetworkConnection conn)
+=======
+    /// Called on client from OnClientConnectInternal when a client needs to authenticate
+    /// </summary>
+    public override void OnClientAuthenticate()
+>>>>>>> Stashed changes
     {
         AuthRequestMessage authRequestMessage = new AuthRequestMessage();
 
@@ -79,12 +107,20 @@ public class #SCRIPTNAME# : NetworkAuthenticator
     /// <summary>
     /// Called on client when the server's AuthResponseMessage arrives
     /// </summary>
+<<<<<<< Updated upstream
     /// <param name="conn">Connection to client.</param>
     /// <param name="msg">The message payload</param>
     public void OnAuthResponseMessage(NetworkConnection conn, AuthResponseMessage msg)
     {
         // Authentication has been accepted
         ClientAccept(conn);
+=======
+    /// <param name="msg">The message payload</param>
+    public void OnAuthResponseMessage(AuthResponseMessage msg)
+    {
+        // Authentication has been accepted
+        ClientAccept();
+>>>>>>> Stashed changes
     }
 
     #endregion

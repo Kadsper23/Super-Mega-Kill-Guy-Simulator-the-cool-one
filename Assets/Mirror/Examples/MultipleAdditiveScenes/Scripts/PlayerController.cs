@@ -15,15 +15,23 @@ namespace Mirror.Examples.MultipleAdditiveScenes
         {
             if (characterController == null)
                 characterController = GetComponent<CharacterController>();
+<<<<<<< Updated upstream
         }
 
         void Start()
         {
             characterController.enabled = isLocalPlayer;
+=======
+
+            characterController.enabled = false;
+            GetComponent<Rigidbody>().isKinematic = true;
+            GetComponent<NetworkTransform>().clientAuthority = true;
+>>>>>>> Stashed changes
         }
 
         public override void OnStartLocalPlayer()
         {
+<<<<<<< Updated upstream
             Camera.main.orthographic = false;
             Camera.main.transform.SetParent(transform);
             Camera.main.transform.localPosition = new Vector3(0f, 3f, -8f);
@@ -40,12 +48,19 @@ namespace Mirror.Examples.MultipleAdditiveScenes
                 Camera.main.transform.localPosition = new Vector3(0f, 70f, 0f);
                 Camera.main.transform.localEulerAngles = new Vector3(90f, 0f, 0f);
             }
+=======
+            characterController.enabled = true;
+>>>>>>> Stashed changes
         }
 
         [Header("Movement Settings")]
         public float moveSpeed = 8f;
         public float turnSensitivity = 5f;
+<<<<<<< Updated upstream
         public float maxTurnSpeed = 150f;
+=======
+        public float maxTurnSpeed = 100f;
+>>>>>>> Stashed changes
 
         [Header("Diagnostics")]
         public float horizontal;
@@ -58,7 +73,11 @@ namespace Mirror.Examples.MultipleAdditiveScenes
 
         void Update()
         {
+<<<<<<< Updated upstream
             if (!isLocalPlayer || !characterController.enabled)
+=======
+            if (!isLocalPlayer || characterController == null || !characterController.enabled)
+>>>>>>> Stashed changes
                 return;
 
             horizontal = Input.GetAxis("Horizontal");
@@ -90,7 +109,11 @@ namespace Mirror.Examples.MultipleAdditiveScenes
 
         void FixedUpdate()
         {
+<<<<<<< Updated upstream
             if (!isLocalPlayer || characterController == null)
+=======
+            if (!isLocalPlayer || characterController == null || !characterController.enabled)
+>>>>>>> Stashed changes
                 return;
 
             transform.Rotate(0f, turn * Time.fixedDeltaTime, 0f);

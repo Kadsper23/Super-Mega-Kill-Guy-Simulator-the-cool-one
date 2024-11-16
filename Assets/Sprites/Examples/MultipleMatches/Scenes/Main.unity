@@ -1103,12 +1103,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7424c1070fad4ba2a7a96b02fbeb4bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< Updated upstream:Assets/Sprites/Examples/MultipleMatches/Scenes/Main.unity
   port: 7777
   NoDelay: 1
   serverMaxMessageSize: 16384
   serverMaxReceivesPerTick: 10000
   clientMaxMessageSize: 16384
   clientMaxReceivesPerTick: 1000
+=======
+  Port: 7777
+  DualMode: 1
+  NoDelay: 1
+  Interval: 10
+  Timeout: 10000
+  FastResend: 2
+  CongestionWindow: 0
+  SendWindowSize: 4096
+  ReceiveWindowSize: 4096
+  NonAlloc: 1
+  debugLog: 0
+  statisticsGUI: 0
+  statisticsLog: 0
+>>>>>>> Stashed changes:Assets/Mirror/Examples/MultipleMatches/Scenes/Main.unity
 --- !u!114 &874070009
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1122,9 +1138,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dontDestroyOnLoad: 0
+  PersistNetworkManagerToOfflineScene: 0
   runInBackground: 1
   autoStartServerBuild: 1
+<<<<<<< Updated upstream:Assets/Sprites/Examples/MultipleMatches/Scenes/Main.unity
   showDebugMessages: 0
+=======
+>>>>>>> Stashed changes:Assets/Mirror/Examples/MultipleMatches/Scenes/Main.unity
   serverTickRate: 30
   offlineScene: 
   onlineScene: 
@@ -1156,6 +1176,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+<<<<<<< Updated upstream:Assets/Sprites/Examples/MultipleMatches/Scenes/Main.unity
+=======
+--- !u!114 &874070011
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 874070006}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d09f5c8bf2f4747b7a9284ef5d9ce2a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+>>>>>>> Stashed changes:Assets/Mirror/Examples/MultipleMatches/Scenes/Main.unity
 --- !u!1 &1005098733
 GameObject:
   m_ObjectHideFlags: 0

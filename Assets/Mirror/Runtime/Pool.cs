@@ -1,6 +1,13 @@
 ﻿// Pool to avoid allocations (from libuv2k)
+<<<<<<< Updated upstream
 using System;
 using System.Collections.Generic;
+=======
+// API consistent with Microsoft's ObjectPool<T>.
+using System;
+using System.Collections.Generic;
+using System.Runtime.CompilerServices;
+>>>>>>> Stashed changes
 
 namespace Mirror
 {
@@ -13,6 +20,7 @@ namespace Mirror
         // we use a Func<T> generator
         readonly Func<T> objectGenerator;
 
+<<<<<<< Updated upstream
         public Pool(Func<T> objectGenerator)
         {
             this.objectGenerator = objectGenerator;
@@ -22,6 +30,28 @@ namespace Mirror
         public T Take() => objects.Count > 0 ? objects.Pop() : objectGenerator();
 
         // return an element to the pool
+=======
+        public Pool(Func<T> objectGenerator, int initialCapacity)
+        {
+            this.objectGenerator = objectGenerator;
+
+            // allocate an initial pool so we have fewer (if any)
+            // allocations in the first few frames (or seconds).
+            for (int i = 0; i < initialCapacity; ++i)
+                objects.Push(objectGenerator());
+        }
+
+        // DEPRECATED 2022-03-10
+        [Obsolete("Take() was renamed to Get()")]
+        public T Take() => Get();
+
+        // take an element from the pool, or create a new one if empty
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public T Get() => objects.Count > 0 ? objects.Pop() : objectGenerator();
+
+        // return an element to the pool
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+>>>>>>> Stashed changes
         public void Return(T item) => objects.Push(item);
 
         // count to see how many objects are in the pool. useful for tests.

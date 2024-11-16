@@ -19,7 +19,14 @@ namespace Mirror.Weaver
         {
             if (readFuncs.ContainsKey(dataType))
             {
+<<<<<<< Updated upstream
                 Weaver.Warning($"Registering a Read method for {dataType.FullName} when one already exists", methodReference);
+=======
+                // TODO enable this again later.
+                // Reader has some obsolete functions that were renamed.
+                // Don't want weaver warnings for all of them.
+                //Log.Warning($"Registering a Read method for {dataType.FullName} when one already exists", methodReference);
+>>>>>>> Stashed changes
             }
 
             // we need to import type when we Initialize Readers so import here in case it is used anywhere else

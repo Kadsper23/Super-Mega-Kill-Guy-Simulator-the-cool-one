@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< Updated upstream:Assets/Sprites/Editor/Weaver.meta
 guid: aa7b6a3e81acc044aacbc44fc0803b69
+========
+guid: 9b7bf7d53b15ed345be6fd123298d8c4
+>>>>>>>> Stashed changes:Assets/ScriptTemplates.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

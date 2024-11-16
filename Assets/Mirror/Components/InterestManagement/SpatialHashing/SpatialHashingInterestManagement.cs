@@ -30,7 +30,11 @@ namespace Mirror
         public bool showSlider;
 
         // the grid
+<<<<<<< Updated upstream
         Grid2D<NetworkConnection> grid = new Grid2D<NetworkConnection>();
+=======
+        Grid2D<NetworkConnectionToClient> grid = new Grid2D<NetworkConnectionToClient>();
+>>>>>>> Stashed changes
 
         // project 3d world position to grid position
         Vector2Int ProjectToGrid(Vector3 position) =>
@@ -60,6 +64,15 @@ namespace Mirror
             grid.GetWithNeighbours(current, newObservers);
         }
 
+<<<<<<< Updated upstream
+=======
+        [ServerCallback]
+        public override void Reset()
+        {
+            lastRebuildTime = 0D;
+        }
+
+>>>>>>> Stashed changes
         // update everyone's position in the grid
         // (internal so we can update from tests)
         internal void Update()

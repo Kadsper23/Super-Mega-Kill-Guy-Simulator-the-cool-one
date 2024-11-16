@@ -1,9 +1,17 @@
 fileFormatVersion: 2
+<<<<<<< Updated upstream
 <<<<<<<< Updated upstream:Assets/PlayerManager.cs.meta
 guid: 410ab9ea3f538434da1052a337d2fa91
 ========
 guid: ea7c690c4fbf8c4439726f4c62eda6d3
 >>>>>>>> Stashed changes:Assets/Mirror/Components/Experimental/NetworkTransformBase.cs.meta
+=======
+<<<<<<<< Updated upstream:Assets/Mirror/Editor/Weaver/Processors/GenericArgumentResolver.cs.meta
+guid: fd67b3f7c2d66074a9bc7a23787e2ffb
+========
+guid: 410ab9ea3f538434da1052a337d2fa91
+>>>>>>>> Stashed changes:Assets/PlayerManager.cs.meta
+>>>>>>> Stashed changes
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2

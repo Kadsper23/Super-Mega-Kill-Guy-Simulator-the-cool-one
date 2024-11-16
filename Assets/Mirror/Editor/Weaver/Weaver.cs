@@ -8,10 +8,19 @@ namespace Mirror.Weaver
     // This data is flushed each time - if we are run multiple times in the same process/domain
     class WeaverLists
     {
+<<<<<<< Updated upstream
         // setter functions that replace [SyncVar] member variable references. dict<field, replacement>
         public Dictionary<FieldDefinition, MethodDefinition> replacementSetterProperties = new Dictionary<FieldDefinition, MethodDefinition>();
         // getter functions that replace [SyncVar] member variable references. dict<field, replacement>
         public Dictionary<FieldDefinition, MethodDefinition> replacementGetterProperties = new Dictionary<FieldDefinition, MethodDefinition>();
+=======
+        public const string InvokeRpcPrefix = "InvokeUserCode_";
+
+        // generated code class
+        public const string GeneratedCodeNamespace = "Mirror";
+        public const string GeneratedCodeClassName = "GeneratedNetworkCode";
+        TypeDefinition GeneratedCodeClass;
+>>>>>>> Stashed changes
 
         public TypeDefinition generateContainerClass;
 
@@ -132,6 +141,60 @@ namespace Mirror.Weaver
 
         static bool WeaveModule(ModuleDefinition moduleDefinition)
         {
+<<<<<<< Updated upstream
+=======
+            bool modified = false;
+
+            Stopwatch watch = Stopwatch.StartNew();
+            watch.Start();
+
+            foreach (TypeDefinition td in moduleDefinition.Types)
+            {
+                if (td.IsClass && td.BaseType.CanBeResolved())
+                {
+                    modified |= WeaveNetworkBehavior(td);
+                    modified |= ServerClientAttributeProcessor.Process(weaverTypes, Log, td, ref WeavingFailed);
+                }
+            }
+
+            watch.Stop();
+            Console.WriteLine($"Weave behaviours and messages took {watch.ElapsedMilliseconds} milliseconds");
+
+            return modified;
+        }
+
+        void CreateGeneratedCodeClass()
+        {
+            // create "Mirror.GeneratedNetworkCode" class which holds all
+            // Readers<T> and Writers<T>
+            GeneratedCodeClass = new TypeDefinition(GeneratedCodeNamespace, GeneratedCodeClassName,
+                TypeAttributes.BeforeFieldInit | TypeAttributes.Class | TypeAttributes.AnsiClass | TypeAttributes.Public | TypeAttributes.AutoClass | TypeAttributes.Abstract | TypeAttributes.Sealed,
+                weaverTypes.Import<object>());
+        }
+
+        // Weave takes an AssemblyDefinition to be compatible with both old and
+        // new weavers:
+        // * old takes a filepath, new takes a in-memory byte[]
+        // * old uses DefaultAssemblyResolver with added dependencies paths,
+        //   new uses ...?
+        //
+        // => assembly: the one we are currently weaving (MyGame.dll)
+        // => resolver: useful in case we need to resolve any of the assembly's
+        //              assembly.MainModule.AssemblyReferences.
+        //              -> we can resolve ANY of them given that the resolver
+        //                 works properly (need custom one for ILPostProcessor)
+        //              -> IMPORTANT: .Resolve() takes an AssemblyNameReference.
+        //                 those from assembly.MainModule.AssemblyReferences are
+        //                 guaranteed to be resolve-able.
+        //                 Parsing from a string for Library/.../Mirror.dll
+        //                 would not be guaranteed to be resolve-able because
+        //                 for ILPostProcessor we can't assume where Mirror.dll
+        //                 is etc.
+        public bool Weave(AssemblyDefinition assembly, IAssemblyResolver resolver, out bool modified)
+        {
+            WeavingFailed = false;
+            modified = false;
+>>>>>>> Stashed changes
             try
             {
                 bool modified = false;
@@ -197,7 +260,11 @@ namespace Mirror.Weaver
 
                 if (modified)
                 {
+<<<<<<< Updated upstream
                     PropertySiteProcessor.Process(moduleDefinition);
+=======
+                    SyncVarAttributeAccessReplacer.Process(moduleDefinition, syncVarAccessLists);
+>>>>>>> Stashed changes
 
                     // add class that holds read/write functions
                     moduleDefinition.Types.Add(WeaveLists.generateContainerClass);
@@ -210,6 +277,7 @@ namespace Mirror.Weaver
                 }
             }
 
+<<<<<<< Updated upstream
             return true;
         }
 
@@ -220,6 +288,9 @@ namespace Mirror.Weaver
             try
             {
                 return Weave(assembly, dependencies);
+=======
+                return true;
+>>>>>>> Stashed changes
             }
             catch (Exception e)
             {

@@ -1,5 +1,8 @@
 // finds all readers and writers and register them
+<<<<<<< Updated upstream
 using System;
+=======
+>>>>>>> Stashed changes
 using System.Linq;
 using Mono.CecilX;
 using Mono.CecilX.Cil;
@@ -13,6 +16,7 @@ namespace Mirror.Weaver
     {
         public static bool Process(AssemblyDefinition CurrentAssembly)
         {
+<<<<<<< Updated upstream
             Readers.Init();
             Writers.Init();
             foreach (Assembly unityAsm in CompilationPipeline.GetAssemblies())
@@ -28,6 +32,16 @@ namespace Mirror.Weaver
             }
 
             return ProcessAssemblyClasses(CurrentAssembly, CurrentAssembly);
+=======
+            // find NetworkReader/Writer extensions from Mirror.dll first.
+            // and NetworkMessage custom writer/reader extensions.
+            // NOTE: do not include this result in our 'modified' return value,
+            //       otherwise Unity crashes when running tests
+            ProcessMirrorAssemblyClasses(CurrentAssembly, resolver, Log, writers, readers, ref WeavingFailed);
+
+            // find readers/writers in the assembly we are in right now.
+            return ProcessAssemblyClasses(CurrentAssembly, CurrentAssembly, writers, readers, ref WeavingFailed);
+>>>>>>> Stashed changes
         }
 
         static bool ProcessAssemblyClasses(AssemblyDefinition CurrentAssembly, AssemblyDefinition assembly)

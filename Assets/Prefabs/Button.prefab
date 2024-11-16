@@ -149,6 +149,8 @@ GameObject:
   - component: {fileID: 2778792819608619109}
   - component: {fileID: 8327156382227648107}
   - component: {fileID: 3266434002373483298}
+  - component: {fileID: -7707698247979854469}
+  - component: {fileID: 6247907792131819966}
   m_Layer: 5
   m_Name: Button
   m_TagString: Untagged
@@ -282,7 +284,64 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0f6a9a98795fe346bd5207836348529, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< Updated upstream
   syncDirection: 0
   syncMode: 0
   syncInterval: 0
   PlayerManager: {fileID: 0}
+=======
+  Card1: {fileID: 4230023230057384713, guid: d029f8c93596ed149ae4b26612a9f70b, type: 3}
+  Card2: {fileID: 5391753474657301158, guid: 4b1a581b10b415b4b8939a4e38d22c3f, type: 3}
+  PlayerArea: {fileID: 6409959924420909213, guid: 90c8ef1820649ef41b10e6367cc36519, type: 3}
+--- !u!114 &-7707698247979854469
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9093086821143934279}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneId: 0
+  serverOnly: 0
+  visible: 0
+  m_AssetId: 6d2dc6bb5bd27b2439654cb51c6b3a02
+  hasSpawned: 0
+--- !u!114 &6247907792131819966
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9093086821143934279}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f74aedd71d9a4f55b3ce499326d45fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  clientAuthority: 0
+  sendInterval: 0.05
+  syncPosition: 1
+  syncRotation: 1
+  syncScale: 0
+  interpolatePosition: 1
+  interpolateRotation: 1
+  interpolateScale: 0
+  bufferTimeMultiplier: 1
+  bufferSizeLimit: 64
+  catchupThreshold: 4
+  catchupMultiplier: 0.1
+  onlySyncOnChange: 1
+  bufferResetMultiplier: 5
+  positionSensitivity: 0.01
+  rotationSensitivity: 0.01
+  scaleSensitivity: 0.01
+  showGizmos: 0
+  showOverlay: 0
+  overlayColor: {r: 0, g: 0, b: 0, a: 0.5}
+>>>>>>> Stashed changes
