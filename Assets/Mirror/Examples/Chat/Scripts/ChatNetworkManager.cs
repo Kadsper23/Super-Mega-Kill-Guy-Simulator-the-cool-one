@@ -1,5 +1,10 @@
 using UnityEngine;
 
+/*
+	Documentation: https://mirror-networking.gitbook.io/docs/components/network-manager
+	API Reference: https://mirror-networking.com/docs/api/Mirror.NetworkManager.html
+*/
+
 namespace Mirror.Examples.Chat
 {
     [AddComponentMenu("")]
@@ -15,10 +20,7 @@ namespace Mirror.Examples.Chat
         {
             // remove player name from the HashSet
             if (conn.authenticationData != null)
-                ChatAuthenticator.playerNames.Remove((string)conn.authenticationData);
-
-            // remove connection from Dictionary of conn > names
-            ChatUI.connNames.Remove(conn);
+                Player.playerNames.Remove((string)conn.authenticationData);
 
             base.OnServerDisconnect(conn);
         }

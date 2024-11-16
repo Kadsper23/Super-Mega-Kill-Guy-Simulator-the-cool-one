@@ -12,22 +12,21 @@ namespace Mirror.Examples.MultipleMatch
         public Image image;
         public Button button;
 
-        [Header("Diagnostics")]
-        [ReadOnly, SerializeField] internal NetworkIdentity playerIdentity;
+        [Header("Diagnostics - Do Not Modify")]
+        public NetworkIdentity playerIdentity;
+
 
         public void Awake()
         {
             matchController.MatchCells.Add(cellValue, this);
         }
 
-        [ClientCallback]
         public void MakePlay()
         {
             if (matchController.currentPlayer.isLocalPlayer)
                 matchController.CmdMakePlay(cellValue);
         }
 
-        [ClientCallback]
         public void SetPlayer(NetworkIdentity playerIdentity)
         {
             if (playerIdentity != null)

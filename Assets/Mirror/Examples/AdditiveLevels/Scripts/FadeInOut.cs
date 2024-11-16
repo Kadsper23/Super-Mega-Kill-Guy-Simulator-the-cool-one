@@ -6,72 +6,55 @@ namespace Mirror.Examples.AdditiveLevels
 {
     public class FadeInOut : MonoBehaviour
     {
-        [Header("Components")]
-        [SerializeField] Image panelImage;
+        // set these in the inspector
+        [Range(1, 100), Tooltip("Speed of fade in / out: lower is slower")]
+        public byte speed = 1;
 
-        [Header("Settings")]
-        [SerializeField, Range(1, 10)]
-        [Tooltip("Time in seconds to fade in")]
-        byte fadeInTime = 2;
+        [Tooltip("Reference to Image component on child panel")]
+        public Image fadeImage;
 
-        [SerializeField, Range(1, 10)]
-        [Tooltip("Time in seconds to fade out")]
-        byte fadeOutTime = 2;
+        [Tooltip("Color to use during scene transition")]
+        public Color fadeColor = Color.black;
 
-        bool isFading;
+        WaitForSeconds waitForSeconds;
 
-        void OnValidate()
+        void Awake()
         {
-            if (panelImage == null)
-                panelImage = GetComponentInChildren<Image>();
-
-            fadeInTime = (byte)Mathf.Max(fadeInTime, 1);
-            fadeOutTime = (byte)Mathf.Max(fadeOutTime, 1);
+            waitForSeconds = new WaitForSeconds(speed * 0.01f);
         }
-
-        public float GetFadeInTime() => fadeInTime + Time.fixedDeltaTime;
 
         public IEnumerator FadeIn()
         {
-            //Debug.Log($"FadeIn {isFading}");
-            yield return FadeImage(0f, 1f, fadeInTime);
-        }
+            //Debug.Log($"{System.DateTime.Now:HH:mm:ss:fff} FadeIn - fading image in {fadeImage.color.a}");
 
-        public float GetFadeOutTime() => fadeOutTime + Time.fixedDeltaTime;
+            float alpha = fadeImage.color.a;
+
+            while (alpha < 1)
+            {
+                yield return waitForSeconds;
+                alpha += 0.01f;
+                fadeColor.a = alpha;
+                fadeImage.color = fadeColor;
+            }
+
+            //Debug.Log($"{System.DateTime.Now:HH:mm:ss:fff} FadeIn - done fading");
+        }
 
         public IEnumerator FadeOut()
         {
-            //Debug.Log($"FadeOut {isFading}");
-            yield return FadeImage(1f, 0f, fadeOutTime);
-        }
+            //Debug.Log($"{System.DateTime.Now:HH:mm:ss:fff} FadeOut - fading image out {fadeImage.color.a}");
 
-        private IEnumerator FadeImage(float startAlpha, float endAlpha, float duration)
-        {
-            if (panelImage == null) yield break;
+            float alpha = fadeImage.color.a;
 
-            if (isFading) yield break;
-
-            // Short circuit if the alpha is already at endAlpha
-            Color color = panelImage.color;
-            if (Mathf.Approximately(color.a, endAlpha)) yield break;
-
-            isFading = true;
-
-            float elapsedTime = 0f;
-            float fixedDeltaTime = Time.fixedDeltaTime;
-
-            while (elapsedTime < duration)
+            while (alpha > 0)
             {
-                elapsedTime += fixedDeltaTime;
-                float alpha = Mathf.Lerp(startAlpha, endAlpha, elapsedTime / duration);
-                panelImage.color = new Color(color.r, color.g, color.b, alpha);
-                yield return new WaitForFixedUpdate();
+                yield return waitForSeconds;
+                alpha -= 0.01f;
+                fadeColor.a = alpha;
+                fadeImage.color = fadeColor;
             }
 
-            // Ensure the final alpha value is set
-            panelImage.color = new Color(color.r, color.g, color.b, endAlpha);
-
-            isFading = false;
+            //Debug.Log($"{System.DateTime.Now:HH:mm:ss:fff} FadeOut - done fading");
         }
     }
 }

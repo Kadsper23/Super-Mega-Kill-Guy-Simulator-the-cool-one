@@ -2,6 +2,11 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+/*
+	Documentation: https://mirror-networking.gitbook.io/docs/components/network-manager
+	API Reference: https://mirror-networking.com/docs/api/Mirror.NetworkManager.html
+*/
+
 namespace Mirror.Examples.AdditiveScenes
 {
     [AddComponentMenu("")]
@@ -32,8 +37,7 @@ namespace Mirror.Examples.AdditiveScenes
 
         public override void OnStopClient()
         {
-            if (mode == NetworkManagerMode.Offline)
-                StartCoroutine(UnloadScenes());
+            StartCoroutine(UnloadScenes());
         }
 
         IEnumerator LoadSubScenes()
@@ -41,7 +45,10 @@ namespace Mirror.Examples.AdditiveScenes
             Debug.Log("Loading Scenes");
 
             foreach (string sceneName in subScenes)
+            {
                 yield return SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
+                // Debug.Log($"Loaded {sceneName}");
+            }
         }
 
         IEnumerator UnloadScenes()
@@ -50,7 +57,10 @@ namespace Mirror.Examples.AdditiveScenes
 
             foreach (string sceneName in subScenes)
                 if (SceneManager.GetSceneByName(sceneName).IsValid() || SceneManager.GetSceneByPath(sceneName).IsValid())
+                {
                     yield return SceneManager.UnloadSceneAsync(sceneName);
+                    // Debug.Log($"Unloaded {sceneName}");
+                }
 
             yield return Resources.UnloadUnusedAssets();
         }

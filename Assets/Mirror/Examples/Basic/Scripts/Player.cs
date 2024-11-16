@@ -3,7 +3,6 @@ using UnityEngine;
 
 namespace Mirror.Examples.Basic
 {
-    [AddComponentMenu("")]
     public class Player : NetworkBehaviour
     {
         // Events that the PlayerUI will subscribe to
@@ -123,8 +122,10 @@ namespace Mirror.Examples.Basic
         /// </summary>
         public override void OnStartClient()
         {
+            Debug.Log("OnStartClient");
+
             // Instantiate the player UI as child of the Players Panel
-            playerUIObject = Instantiate(playerUIPrefab, CanvasUI.GetPlayersPanel());
+            playerUIObject = Instantiate(playerUIPrefab, CanvasUI.instance.playersPanel);
             playerUI = playerUIObject.GetComponent<PlayerUI>();
 
             // wire up all events to handlers in PlayerUI
@@ -144,11 +145,13 @@ namespace Mirror.Examples.Basic
         /// </summary>
         public override void OnStartLocalPlayer()
         {
+            Debug.Log("OnStartLocalPlayer");
+
             // Set isLocalPlayer for this Player in UI for background shading
             playerUI.SetLocalPlayer();
 
             // Activate the main panel
-            CanvasUI.SetActive(true);
+            CanvasUI.instance.mainPanel.gameObject.SetActive(true);
         }
 
         /// <summary>
@@ -158,7 +161,7 @@ namespace Mirror.Examples.Basic
         public override void OnStopLocalPlayer()
         {
             // Disable the main panel for local player
-            CanvasUI.SetActive(false);
+            CanvasUI.instance.mainPanel.gameObject.SetActive(false);
         }
 
         /// <summary>

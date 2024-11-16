@@ -24,7 +24,6 @@ namespace Mirror.Examples.Benchmark
             {
                 if (Vector3.Distance(transform.position, destination) <= 0.01f)
                 {
-                    transform.position = destination;
                     moving = false;
                 }
                 else

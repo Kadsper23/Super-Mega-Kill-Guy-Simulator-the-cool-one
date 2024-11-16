@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 135606878775227198}
   - component: {fileID: 6909319328281960030}
   - component: {fileID: 114251241889735402}
-  - component: {fileID: 5119366209337690377}
   - component: {fileID: 114048121767222990}
+  - component: {fileID: 7669440687796875101}
   m_Layer: 0
   m_Name: Prize
   m_TagString: Untagged
@@ -78,28 +78,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneId: 0
-  _assetId: 1863100618
   serverOnly: 0
-  visibility: 0
+  visible: 0
+  m_AssetId: 
   hasSpawned: 0
---- !u!114 &5119366209337690377
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1139254171913846}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a91a718a70d01b347b75cb768a6f1a92, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  syncDirection: 0
-  syncMode: 0
-  syncInterval: 0
-  color:
-    serializedVersion: 2
-    rgba: 4278190080
 --- !u!114 &114048121767222990
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -112,11 +94,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10da7fdf8caa1eb4697658bf129457fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  syncDirection: 0
   syncMode: 0
   syncInterval: 0.1
   available: 1
-  randomColor: {fileID: 5119366209337690377}
+  randomColor: {fileID: 7669440687796875101}
+--- !u!114 &7669440687796875101
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1139254171913846}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 218520098fbe58b4b8f0963ef41953f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  color:
+    serializedVersion: 2
+    rgba: 4278190080
 --- !u!1 &5133204039361288107
 GameObject:
   m_ObjectHideFlags: 0

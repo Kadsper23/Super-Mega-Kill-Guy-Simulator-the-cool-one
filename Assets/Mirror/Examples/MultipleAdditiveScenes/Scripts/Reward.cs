@@ -2,18 +2,16 @@ using UnityEngine;
 
 namespace Mirror.Examples.MultipleAdditiveScenes
 {
-    [RequireComponent(typeof(Common.RandomColor))]
+    [RequireComponent(typeof(RandomColor))]
     public class Reward : NetworkBehaviour
     {
         public bool available = true;
-        public Common.RandomColor randomColor;
+        public RandomColor randomColor;
 
-        protected override void OnValidate()
+        void OnValidate()
         {
-            base.OnValidate();
-
             if (randomColor == null)
-                randomColor = GetComponent<Common.RandomColor>();
+                randomColor = GetComponent<RandomColor>();
         }
 
         [ServerCallback]
@@ -23,8 +21,9 @@ namespace Mirror.Examples.MultipleAdditiveScenes
                 ClaimPrize(other.gameObject);
         }
 
-        [ServerCallback]
-        void ClaimPrize(GameObject player)
+        // This is called from PlayerController.CmdClaimPrize which is invoked by PlayerController.OnControllerColliderHit
+        // This only runs on the server
+        public void ClaimPrize(GameObject player)
         {
             if (available)
             {
@@ -37,6 +36,7 @@ namespace Mirror.Examples.MultipleAdditiveScenes
                 // calculate the points from the color ... lighter scores higher as the average approaches 255
                 // UnityEngine.Color RGB values are float fractions of 255
                 uint points = (uint)(((color.r) + (color.g) + (color.b)) / 3);
+                //Debug.Log($"Scored {points} points R:{color.r} G:{color.g} B:{color.b}");
 
                 // award the points via SyncVar on the PlayerController
                 player.GetComponent<PlayerScore>().score += points;

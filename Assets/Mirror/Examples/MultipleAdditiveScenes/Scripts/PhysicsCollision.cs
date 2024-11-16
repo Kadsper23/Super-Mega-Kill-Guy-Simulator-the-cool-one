@@ -10,10 +10,8 @@ namespace Mirror.Examples.MultipleAdditiveScenes
 
         public Rigidbody rigidbody3D;
 
-        protected override void OnValidate()
+        void OnValidate()
         {
-            base.OnValidate();
-
             if (rigidbody3D == null)
                 rigidbody3D = GetComponent<Rigidbody>();
         }
