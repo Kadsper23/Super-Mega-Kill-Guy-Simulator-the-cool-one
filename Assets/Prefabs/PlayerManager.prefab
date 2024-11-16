@@ -100,7 +100,10 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   Card1: {fileID: 4230023230057384713, guid: d029f8c93596ed149ae4b26612a9f70b, type: 3}
-  Card2: {fileID: 5391753474657301158, guid: 4b1a581b10b415b4b8939a4e38d22c3f, type: 3}
   PlayerArea: {fileID: 0}
   EnemyArea: {fileID: 0}
   DropZone: {fileID: 0}
+  cards:
+  - {fileID: 11400000, guid: 9f8617e5d6bcada46b52e54c5e86ee11, type: 2}
+  - {fileID: 11400000, guid: 694480802c1e73444b3014334acc6b78, type: 2}
+  - {fileID: 11400000, guid: 4d11e5e6cd61bba42826bcd641e15aa5, type: 2}

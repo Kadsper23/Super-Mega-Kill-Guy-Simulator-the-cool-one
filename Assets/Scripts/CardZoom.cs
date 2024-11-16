@@ -16,12 +16,14 @@ public class CardZoom : NetworkBehaviour
 
     public void Awake()
     {
+        gameObject.GetComponent<Image>().sprite = gameObject.GetComponent<CardFlipper>().CardFront;
         Canvas = GameObject.Find("Main Canvas");
-        zoomSprite = gameObject.GetComponent<Image>().sprite;
+        
     }
 
     public void OnHoverEnter()
     {
+        zoomSprite = gameObject.GetComponent<Image>().sprite;
         if (!hasAuthority && !gameObject.GetComponent<DragDrop>().isOverDropZone) return;
         zoomCard = Instantiate(ZoomCard, new Vector2(Input.mousePosition.x, Input.mousePosition.y + 250), Quaternion.identity);
         zoomCard.GetComponent<Image>().sprite = zoomSprite;

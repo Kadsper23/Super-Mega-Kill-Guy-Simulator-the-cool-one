@@ -8,6 +8,11 @@ public class CardFlipper : MonoBehaviour
     public Sprite CardFront;
     public Sprite CardBack;
 
+    void Start()
+    {
+        CardFront = GetComponent<CardDisplay>().artworkImage;
+    }
+
     public void Flip()
     {
         Sprite currentSprite = gameObject.GetComponent<Image>().sprite;

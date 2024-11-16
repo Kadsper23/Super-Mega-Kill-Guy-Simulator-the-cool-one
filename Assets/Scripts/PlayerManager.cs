@@ -10,7 +10,7 @@ public class PlayerManager : NetworkBehaviour
     public GameObject EnemyArea;
     public GameObject DropZone;
 
-    List<GameObject> cards = new List<GameObject>();
+    private List<Card> cards;
 
     public override void OnStartClient()
     {
@@ -19,6 +19,7 @@ public class PlayerManager : NetworkBehaviour
         PlayerArea = GameObject.Find("PlayerArea");
         EnemyArea = GameObject.Find("EnemyArea");
         DropZone = GameObject.Find("DropZone");
+        cards = Card1.GetComponent<CardDisplay>().cards;
     }
 
     [Server]
@@ -26,7 +27,6 @@ public class PlayerManager : NetworkBehaviour
     {
         base.OnStartServer();
 
-        cards.Add(Card1);
 
     }
 
@@ -35,7 +35,8 @@ public class PlayerManager : NetworkBehaviour
     {
         for (int i = 0; i < 5; i++)
         {
-            GameObject card = Instantiate(cards[Random.Range(0, cards.Count)], new Vector2(0, 0), Quaternion.identity);
+            GameObject card = Instantiate(Card1, new Vector2(0, 0), Quaternion.identity);
+            card.GetComponent<CardDisplay>().card = cards[Random.Range(0, cards.Count)];
             NetworkServer.Spawn(card, connectionToClient);
             RpcShowCard(card, "Dealt");
         }
