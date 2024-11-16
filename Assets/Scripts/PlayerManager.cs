@@ -6,7 +6,6 @@ using Mirror;
 public class PlayerManager : NetworkBehaviour
 {
     public GameObject Card1;
-    public GameObject Card2;
     public GameObject PlayerArea;
     public GameObject EnemyArea;
     public GameObject DropZone;
@@ -28,7 +27,6 @@ public class PlayerManager : NetworkBehaviour
         base.OnStartServer();
 
         cards.Add(Card1);
-        cards.Add(Card2);
 
     }
 
