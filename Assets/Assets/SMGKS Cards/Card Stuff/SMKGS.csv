@@ -1,0 +1,5 @@
+Card Name,Card Type,Card Cost,Card Health,Card Damage,Card Description,Flavor Text,Image
+Clarity,Spell,2,,0,Draw cards until your hand is full.,,Images/Clarity.png
+Dodge Roll,Spell,2,,0,Negate the next time you would take damage,Only those with souls of dark can master this move,Images/DodgeRoll.png
+Predecessor,Creature - Apparition,1,1,2,,Being swagger is a leisurley and Machiavellian demise,Images/Predecessor.png
+Living Bullet,Creature - Brass,3,1,5,,,Images/LivingBullet.png
