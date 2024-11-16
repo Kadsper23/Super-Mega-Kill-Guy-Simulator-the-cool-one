@@ -19,7 +19,7 @@ public class PlayerManager : NetworkBehaviour
 
         PlayerArea = GameObject.Find("PlayerArea");
         EnemyArea = GameObject.Find("EnemyArea");
-        DropZone = GameObject.Find("DropZOne");
+        DropZone = GameObject.Find("DropZone");
     }
 
     [Server]
@@ -49,7 +49,6 @@ public class PlayerManager : NetworkBehaviour
     }
 
     [Command]
-
     void CmdPlayCard(GameObject card)
     {
         RpcShowCard(card, "Played");
@@ -67,12 +66,54 @@ public class PlayerManager : NetworkBehaviour
             else
             {
                 card.transform.SetParent(EnemyArea.transform, false);
+                card.GetComponent<CardFlipper>().Flip();
             }
         } 
         else if (type == "Played")
         {
             card.transform.SetParent(DropZone.transform, false);
+            if (!hasAuthority)
+            {
+                card.GetComponent<CardFlipper>().Flip();
+            }
         }
     }
 
+    [Command]
+    public void CmdTargetSelfCard()
+    {
+        TargetSelfCard();
+    }
+
+    [Command]
+    public void CmdTargetOtherCard(GameObject target)
+    {
+        NetworkIdentity opponentIdentity = target.GetComponent<NetworkIdentity>();
+        TargetOtherCard(opponentIdentity.connectionToClient);
+    }
+    [TargetRpc]
+    void TargetSelfCard() 
+    {
+        Debug.Log("Targeted by self!");
+    }
+
+    [TargetRpc]
+    void TargetOtherCard(NetworkConnection target)
+    {
+        Debug.Log("Targeted by other!");
+    }
+
+    // Again, this is purely to demonstrate sync variables
+    [Command]
+    public void CmdIncrementClick(GameObject card)
+    {
+        RpcIncrementClick(card);
+    }
+
+    [ClientRpc]
+    void RpcIncrementClick(GameObject card)
+    {
+        card.GetComponent<IncrementClick>().NumberOfClicks++;
+        Debug.Log("This card has been clicked " + card.GetComponent<IncrementClick>().NumberOfClicks + " times!");
+    }
 }

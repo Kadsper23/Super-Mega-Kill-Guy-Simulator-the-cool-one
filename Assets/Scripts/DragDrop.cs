@@ -5,14 +5,20 @@ using Mirror;
 
 public class DragDrop : NetworkBehaviour
 {
+    public GameObject Canvas;
+    public PlayerManager PlayerManager;
+
     private bool isDragging = false;
+    private bool isDraggable = true;
+
     private GameObject startParent;
     private Vector2 startPosition;
     private GameObject dropZone;
-    public GameObject Canvas;
-    public PlayerManager PlayerManager;
-    private bool isDraggable = true;
-    private bool isOverDropZone;
+    public bool isOverDropZone;
+
+    
+    
+    
 
     // Start is called before the first frame update
     void Start()
@@ -36,6 +42,7 @@ public class DragDrop : NetworkBehaviour
         isOverDropZone = false;
         dropZone = null;
     }
+
     public void StartDrag()
     {
         if (!isDraggable) return;
