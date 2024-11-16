@@ -1,9 +1,11 @@
+using Mirror;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DrawCards : MonoBehaviour
+public class DrawCards : NetworkBehaviour
 {
+<<<<<<< Updated upstream
     public GameObject Card1;
     public GameObject Card2;
     public GameObject PlayerArea;
@@ -31,5 +33,14 @@ public class DrawCards : MonoBehaviour
     void Update()
     {
         heldCards = GameObject.FindGameObjectsWithTag("PlayerCard").Length;
+=======
+    public PlayerManager PlayerManager;
+
+    public void OnClick()
+    {
+        NetworkIdentity networkIdentity = NetworkClient.connection.identity;
+        PlayerManager = networkIdentity.GetComponent<PlayerManager>();
+        PlayerManager.CmdDealCards();
+>>>>>>> Stashed changes
     }
 }

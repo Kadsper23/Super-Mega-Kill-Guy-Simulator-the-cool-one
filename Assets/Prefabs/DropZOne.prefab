@@ -11,7 +11,13 @@ GameObject:
   - component: {fileID: 4575904070878952611}
   - component: {fileID: 6933304334634738732}
   - component: {fileID: 6460427324555068958}
+<<<<<<< Updated upstream
   m_Layer: 0
+=======
+  - component: {fileID: -7245138494336927304}
+  - component: {fileID: 2940685609092077028}
+  m_Layer: 7
+>>>>>>> Stashed changes
   m_Name: DropZOne
   m_TagString: Untagged
   m_Icon: {fileID: 0}
