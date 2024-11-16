@@ -1,5 +1,9 @@
 fileFormatVersion: 2
-guid: c7c472a3ea1bc4348bd5a0b05bf7cc3b
+<<<<<<<< Updated upstream:Assets/Sprites/Cloud/Core/Events.cs.meta
+guid: 938f439f2e7fe074f91972fb6b1f7ff6
+========
+guid: 4d54a29ddd5b52b4eaa07ed39c0e3e83
+>>>>>>>> Stashed changes:Assets/Mirror/Editor/ScriptableObjectUtility.cs.meta
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2

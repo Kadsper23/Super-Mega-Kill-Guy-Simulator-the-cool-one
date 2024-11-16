@@ -1,5 +1,9 @@
 fileFormatVersion: 2
-guid: 7f032128052c95a46afb0ddd97d994cc
+<<<<<<<< Updated upstream:Assets/Sprites/Components/Experimental/NetworkLerpRigidbody.cs.meta
+guid: 4fc3f0dde97d69c4295ccd69b8c8fa33
+========
+guid: b7fdb599e1359924bad6255660370252
+>>>>>>>> Stashed changes:Assets/Mirror/Components/NetworkSceneChecker.cs.meta
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+<<<<<<<< Updated upstream:Assets/Sprites/Cloud/Core/BaseApi.cs.meta
+guid: 394c921d5c45cae45aa410a4793509c1
+========
+guid: f28def2148ed5194abe70af012a4e3e0
+>>>>>>>> Stashed changes:Assets/Mirror/Editor/LogLevelWindow.cs.meta
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: ''
+  assetBundleName: ''
+  assetBundleVariant: ''

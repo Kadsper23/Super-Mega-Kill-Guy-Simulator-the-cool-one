@@ -1,5 +1,9 @@
 fileFormatVersion: 2
-guid: 70f563b7a7210ae43bbcde5cb7721a94
+<<<<<<<< Updated upstream:Assets/Sprites/Cloud/Core/BaseApi.cs.meta
+guid: 940cb3442a2df1841a29bdbae3387dab
+========
+guid: f28def2148ed5194abe70af012a4e3e0
+>>>>>>>> Stashed changes:Assets/Mirror/Editor/LogLevelWindow.cs.meta
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2

@@ -1,5 +1,9 @@
 fileFormatVersion: 2
-guid: 83392ae5c1b731446909f252fd494ae4
+<<<<<<<< Updated upstream:Assets/Sprites/Components/Experimental/NetworkRigidbody.cs.meta
+guid: efd543ca4b54ed242afd9ef8e9f509ce
+========
+guid: 25fd0c51bbe07c140bc30978b91e9182
+>>>>>>>> Stashed changes:Assets/Mirror/Components/NetworkOwnerChecker.cs.meta
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+<<<<<<<< Updated upstream:Assets/Sprites/Cloud/ApiConnector.cs.meta
+guid: e10783fe5e079c542a2504d5416bad84
+========
+guid: b15a0d2ca0909400eb53dd6fe894cddd
+>>>>>>>> Stashed changes:Assets/Mirror/Editor/EnterPlayModeSettingsCheck.cs.meta
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: ''
+  assetBundleName: ''
+  assetBundleVariant: ''

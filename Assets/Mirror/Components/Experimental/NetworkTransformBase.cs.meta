@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+<<<<<<<< Updated upstream:Assets/PlayerManager.cs.meta
+guid: f44bbeb7b5bda2043828f453096bfe29
+========
+guid: ea7c690c4fbf8c4439726f4c62eda6d3
+>>>>>>>> Stashed changes:Assets/Mirror/Components/Experimental/NetworkTransformBase.cs.meta
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: ''
+  assetBundleName: ''
+  assetBundleVariant: ''

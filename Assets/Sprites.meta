@@ -1,5 +1,9 @@
 fileFormatVersion: 2
-guid: d038949b8b8dcb44682722b16a0a953d
+<<<<<<<< Updated upstream:Assets/Sprites.meta
+guid: 440ef24a06eeb514e9d0ee79880b86e2
+========
+guid: 73a9bb2dacafa8141bce8feef34e33a7
+>>>>>>>> Stashed changes:Assets/Mirror/Cloud.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

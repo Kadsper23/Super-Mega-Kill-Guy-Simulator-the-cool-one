@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+<<<<<<<< Updated upstream:Assets/Sprites/Components/Experimental/NetworkRigidbody.cs.meta
+guid: 2222b1a6f9360d94b9c69d5de3937c73
+========
+guid: 25fd0c51bbe07c140bc30978b91e9182
+>>>>>>>> Stashed changes:Assets/Mirror/Components/NetworkOwnerChecker.cs.meta
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {fileID: 2800000, guid: 7453abfe9e8b2c04a8a47eb536fe21eb, type: 3}
+  userData: ''
+  assetBundleName: ''
+  assetBundleVariant: ''

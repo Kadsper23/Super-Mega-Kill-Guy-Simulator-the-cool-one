@@ -1,5 +1,9 @@
 fileFormatVersion: 2
-guid: 741bbe11f5357b44593b15c0d11b16bd
+<<<<<<<< Updated upstream:Assets/Sprites/Components/Experimental/NetworkTransform.cs.meta
+guid: e59f9bcf3c80233449d628b7db01d55c
+========
+guid: 1731d8de2d0c84333b08ebe1e79f4118
+>>>>>>>> Stashed changes:Assets/Mirror/Components/NetworkProximityChecker.cs.meta
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
