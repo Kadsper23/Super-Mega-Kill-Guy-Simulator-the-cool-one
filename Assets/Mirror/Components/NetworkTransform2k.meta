@@ -1,4 +1,5 @@
 fileFormatVersion: 2
+<<<<<<< Updated upstream
 <<<<<<<< Updated upstream:Assets/Mirror/Examples/AdditiveScenes/AnimationControllers.meta
 guid: 3680aed1aba209a448e9df7b859dcebb
 ========
@@ -10,3 +11,12 @@ DefaultImporter:
   userData: ''
   assetBundleName: ''
   assetBundleVariant: ''
+=======
+guid: 846748c4887fa5a43b23aef8b40f4045
+folderAsset: yes
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+>>>>>>> Stashed changes
