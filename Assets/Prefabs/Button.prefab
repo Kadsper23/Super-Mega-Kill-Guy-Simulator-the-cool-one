@@ -282,6 +282,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0f6a9a98795fe346bd5207836348529, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Card1: {fileID: 4230023230057384713, guid: d029f8c93596ed149ae4b26612a9f70b, type: 3}
-  Card2: {fileID: 5391753474657301158, guid: 4b1a581b10b415b4b8939a4e38d22c3f, type: 3}
-  PlayerArea: {fileID: 6409959924420909213, guid: 90c8ef1820649ef41b10e6367cc36519, type: 3}
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
+  PlayerManager: {fileID: 0}
