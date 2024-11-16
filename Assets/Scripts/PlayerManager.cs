@@ -52,6 +52,25 @@ public class PlayerManager : NetworkBehaviour
     void CmdPlayCard(GameObject card)
     {
         RpcShowCard(card, "Played");
+
+        if (isServer)
+        {
+            UpdateTurnsPlayed();
+        }
+    }
+
+    [Server]
+    void UpdateTurnsPlayed()
+    {
+        GameManager gm = GameObject.Find("GameManager").GetComponent<GameManager>();
+        gm.UpdateTurnsPlayed();
+        RpcLogToClients("Turns Played: " + gm.TurnsPlayed);
+    }
+
+    [ClientRpc]
+    void RpcLogToClients(string msg)
+    {
+        Debug.Log(msg);
     }
 
     [ClientRpc]
